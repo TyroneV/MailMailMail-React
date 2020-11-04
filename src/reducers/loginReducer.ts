@@ -9,7 +9,6 @@ const initialState ={
     password:''
 }
 
-type Action = {type: 'LOG_IN',payload: UserState};
 
 export const loginReducer = (state:UserState = initialState,action:Action) =>{
     switch(action.type){

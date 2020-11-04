@@ -3,6 +3,7 @@ import { Login } from './components/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserState } from './reducers/loginReducer';
+import { onLogin } from './actions/actions';
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
   const dispatch = useDispatch();
 
   const showUsername = (u:UserState) =>{
-    dispatch({type:"LOG_IN",payload:u})
+    dispatch(onLogin(u))
   }
 
   return (
