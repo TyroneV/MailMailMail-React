@@ -1,7 +1,14 @@
 import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { UserState } from "../reducers/loginReducer";
 
-export const Login: React.FC<any> = () => {
+interface loginProps{
+  submit(note:UserState):void;
+}
+
+
+export const Login: React.FC<loginProps> = ({submit}) => {
+
   const [username, setUsername] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
@@ -10,7 +17,12 @@ export const Login: React.FC<any> = () => {
     let form = event.currentTarget;
     setUsername(form[0].value);
     setPassword(form[1].value);
+    submit({
+      username:form[0].value,
+      password:form[1].value
+    });
   }
+
 
   return (
     <Container>
@@ -20,7 +32,6 @@ export const Login: React.FC<any> = () => {
             <Form.Group controlId="formUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control type="text" placeholder="Enter Username" />
-              <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
             <Form.Group controlId="formPassword">
               <Form.Label>Password</Form.Label>
@@ -32,8 +43,6 @@ export const Login: React.FC<any> = () => {
           </Form>
         </Col>
       </Row>
-      <p>{username}</p>
-      <p>{password}</p>
     </Container>
   );
 };
