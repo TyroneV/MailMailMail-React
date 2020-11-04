@@ -1,16 +1,13 @@
+import { LoginAction } from "../actions/actions";
+import { UserState } from "../states/states";
 
-export interface UserState{
-    username:string,
-    password:string
-}
 
-const initialState ={
+const initialState:UserState ={
     username:'',
     password:''
 }
 
-
-export const loginReducer = (state:UserState = initialState,action:Action) =>{
+export const loginReducer = (state:UserState = initialState,action:LoginAction) =>{
     switch(action.type){
         case "LOG_IN":{
             return action.payload;

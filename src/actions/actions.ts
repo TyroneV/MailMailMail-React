@@ -1,9 +1,15 @@
-import { UserState } from "../reducers/loginReducer";
 
-export type Action = {type: 'LOG_IN',payload: UserState};
+import { UserState } from "../states/states";
 
+/*
+* The actions
+*/
+export type LoginAction = {type: 'LOG_IN',payload: UserState};
 
-export const onLogin = (user:UserState):Action => (
+/*
+* Callbacks that gives back an action
+*/
+export const onLogin = (user:UserState):LoginAction => (
     {
         type:'LOG_IN',
         payload:user
