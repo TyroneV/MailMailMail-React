@@ -1,8 +1,9 @@
 import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { UserState } from "../reducers/loginReducer";
+import { UserState } from "../states/states";
 
 interface loginProps{
+  //Prop that will later receive the 
   submit(note:UserState):void;
 }
 
@@ -17,6 +18,7 @@ export const Login: React.FC<loginProps> = ({submit}) => {
     let form = event.currentTarget;
     setUsername(form[0].value);
     setPassword(form[1].value);
+
     submit({
       username:form[0].value,
       password:form[1].value
