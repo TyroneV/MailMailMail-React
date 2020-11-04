@@ -2,7 +2,7 @@ import { LoginAction } from "../actions/actions";
 import { UserState } from "../states/states";
 
 
-const initialState:UserState ={
+const initialState = {
     username:'',
     password:''
 }
