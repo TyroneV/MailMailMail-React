@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { UserState } from "../states/states";
 
@@ -7,17 +7,30 @@ interface loginProps{
   submit(note:UserState):void;
 }
 
+interface User{
+  username: string,
+  password: string
+}
+
 
 export const Login: React.FC<loginProps> = ({submit}) => {
 
   const [username, setUsername] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
+  //const [user,setUser] = useState({username:"", password:""});
+
   const loginSubmit = (event:any) => {
     event.preventDefault();
     let form = event.currentTarget;
+    // setUser ({
+    //   username : form[0].value,
+    //   password : form[1].value
+
+    // });
     setUsername(form[0].value);
     setPassword(form[1].value);
+    console.log(username + "hello")
 
     submit({
       username:form[0].value,

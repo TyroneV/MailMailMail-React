@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { onLogin } from './actions/actions';
 import { UserState } from './states/states';
+import { NavBar } from './components/NavBar';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <>
+    <NavBar/>
       <p>{user.username}</p>
       <p>{user.password}</p>
       <Login submit={showUsername}/>
