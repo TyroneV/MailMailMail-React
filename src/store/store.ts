@@ -1,5 +1,4 @@
 import {createStore} from 'redux';
-import { loginReducer } from '../reducers/loginReducer';
 import { allReducers } from '../reducers';
 
 /*
