@@ -24,12 +24,7 @@ export const NavBar = () => {
                 </NavItem>
                  {/* this is the log out button */}
                 <NavItem className="ml-auto">
-                  <NavLink
-                    onClick={() => localStorage.setItem("username", "")}
-                    href="/"
-                  >
-                    logout
-                  </NavLink>
+                  <NavLink href="/">Logout</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
