@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { UserState } from "../states/states";
 
@@ -6,6 +6,7 @@ interface loginProps{
   //Prop that will later receive the 
   submit(note:UserState):void;
 }
+
 
 export const Login: React.FC<loginProps> = ({submit}) => {
 
@@ -17,6 +18,8 @@ export const Login: React.FC<loginProps> = ({submit}) => {
       password:form[1].value
     });
   }
+
+
   return (
     <Container>
       <Row>

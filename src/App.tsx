@@ -1,11 +1,11 @@
 import React from 'react';
 import { Login } from './components/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Provider, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { onLogin } from './actions/actions';
 import { UserState } from './states/states';
 import { NavBar } from './components/NavBar';
-import { store } from './store/store';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 function App() {
@@ -20,10 +20,21 @@ function App() {
     console.log(u);
   }
 
+  // New components/pages should be added here. 
   return (
     <>
-    <NavBar/>
-    <Login submit={showUsername}/>
+    <BrowserRouter basename="/">
+      <Switch>
+        <Route exact path="/" render= {() => (<Login submit ={showUsername}/>)}/>
+        {/*This should be the home page component*/}
+        <Route path ="/Home" component = {NavBar}/>
+
+
+
+      </Switch>
+
+      
+    </BrowserRouter>
     </>
 
   );

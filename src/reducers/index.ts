@@ -7,3 +7,8 @@ import { loginReducer } from './loginReducer';
 export const allReducers = combineReducers({
     login : loginReducer,
 });
+
+export type RootStore = ReturnType<typeof allReducers>;
+
+
+
