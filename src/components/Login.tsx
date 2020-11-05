@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { onLogin } from "../actions/actions";
+import { RootStore } from "../reducers";
 import { UserState } from "../states/states";
 
 
@@ -9,6 +10,19 @@ export const Login: React.FC = () => {
 
   const dispatch = useDispatch();
   
+  const user = useSelector((state:RootStore)=>state.login);
+
+  useEffect(() => {
+    createSession();
+  }, [user]);
+
+  const createSession = () =>{
+    if(user.username){
+      window.sessionStorage.setItem('username',user.username);
+    }
+  }
+
+
   /*
   * Callback that calls the dispatcher
   */
