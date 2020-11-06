@@ -1,4 +1,5 @@
 $blue:  rgb(32, 85, 138);
+$orange: rgb(255, 181, 44);
 
 body{
     background-color: $blue;
@@ -18,11 +19,11 @@ body{
 
 .blue{
     background-color:$blue;
-    color: rgb(255, 181, 44);
+    color: $orange
 }
 
 .orange{
-    background-color: orange;
+    background-color: $orange;
     color: white;
 }
 
