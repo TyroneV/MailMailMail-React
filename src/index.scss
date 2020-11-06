@@ -1,8 +1,16 @@
-$backgroundColor: rgb(242, 249, 255);
-$blue:  dodgerblue;
+$blue:  rgb(32, 85, 138);
 
+body{
+    background-color: $blue;
+}
 
+.margin-50{
+    margin: 50px 50px 50px 50px;
+}
 
+.margin-20{
+    margin: 20px 20px 20px 20px;
+}
 
 .white{
     background-color: whitesmoke;
@@ -10,10 +18,17 @@ $blue:  dodgerblue;
 
 .blue{
     background-color:$blue;
+    color: rgb(255, 181, 44);
 }
 
 .orange{
     background-color: orange;
+    color: white;
+}
+
+.width{
+    min-width: 80vw;
+    width: 80%;
 }
 
 .fill {
