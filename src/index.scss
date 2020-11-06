@@ -1,0 +1,22 @@
+$backgroundColor: rgb(242, 249, 255);
+$blue:  dodgerblue;
+
+
+
+
+.white{
+    background-color: whitesmoke;
+}
+
+.blue{
+    background-color:$blue;
+}
+
+.orange{
+    background-color: orange;
+}
+
+.fill {
+    min-height: 100vh;
+    height: 100%;
+}

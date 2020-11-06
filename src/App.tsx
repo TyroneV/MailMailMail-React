@@ -1,9 +1,7 @@
 import React from 'react';
 import { Login } from './components/Login';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavBar } from './components/NavBar';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
 
 function App() {
 
