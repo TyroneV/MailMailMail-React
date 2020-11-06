@@ -11,7 +11,7 @@ function App() {
     <>
     <BrowserRouter basename="/">
       <Switch>
-        <Route exact path="/" render= {() => (<Login/>)}/>
+        <Route exact path="/" component= {Login}/>
         {/*This should be the home page component*/}
         <Route path ="/Home" component = {NavBar}/>
 
