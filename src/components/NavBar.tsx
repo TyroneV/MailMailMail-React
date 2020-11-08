@@ -8,6 +8,7 @@ import {
   NavbarToggler,
   NavbarBrand,
 } from "reactstrap";
+import { SideBar } from "./SideBar";
 
 export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,9 +46,10 @@ export const NavBar: React.FC = () => {
           <Nav>
             {/* this is the log out button */}
             <NavItem className="mr-auto">
-              <NavbarBrand href="/" onClick={handleClick}>
+              {/* <NavbarBrand href="/" onClick={handleClick}>
                 Logout
-              </NavbarBrand>
+              </NavbarBrand> */}
+              <SideBar/>
             </NavItem>
           </Nav>
         </Collapse>
