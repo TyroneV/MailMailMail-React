@@ -16,7 +16,8 @@ export const Home: React.FC = () => {
             <CreatePost/>
           </Col>
         </Row>
-        <Row>
+        {/* Post Here */}
+        <Row className="mt-5">
             <Col>
                 <Feed/>
             </Col>
