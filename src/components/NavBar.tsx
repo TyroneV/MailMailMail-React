@@ -39,7 +39,7 @@ export const NavBar: React.FC = () => {
               <NavbarBrand href="/home" className="mr-4">Home</NavbarBrand>
             </NavItem>
             <NavItem>
-              <NavbarBrand href="/me">Me</NavbarBrand>
+              <NavbarBrand href="/me">M3</NavbarBrand>
             </NavItem>
           </Nav>
           <Nav>
