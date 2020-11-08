@@ -42,7 +42,7 @@ export const Profile: React.FC = () => {
                         <Card.Subtitle className="mb-2" id="jobCard">
                           Job Title
                         </Card.Subtitle> */}
-                        <Button className="blue">Add M3</Button>
+                        <EditProfile/>
                       </div>
                     </Col>
                   </Row>
