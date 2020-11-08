@@ -4,13 +4,11 @@ import {
   Card,
   Col,
   Container,
-  Form,
-  FormControl,
-  Nav,
   Navbar,
   Row,
 } from "react-bootstrap";
 import { NavBar } from "./NavBar";
+import { Post } from "./Post";
 
 export const Profile: React.FC = () => {
   return (
@@ -55,6 +53,7 @@ export const Profile: React.FC = () => {
                   <Navbar.Brand href="#home">Friends</Navbar.Brand>
                 </Navbar>
                 {/* Posts here */}
+                <Post/>
               </Card.Body>
             </Card>
           </Col>
