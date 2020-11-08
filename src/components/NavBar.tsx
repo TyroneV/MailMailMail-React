@@ -6,9 +6,7 @@ import {
   Nav,
   NavItem,
   NavbarToggler,
-  NavLink,
   NavbarBrand,
-  NavbarText,
 } from "reactstrap";
 
 export const NavBar: React.FC = () => {

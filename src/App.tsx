@@ -17,8 +17,6 @@ function App() {
         <Route path ="/home" component = {NavBar}/>
         <Route path ="/me" component = {Profile}/>
       </Switch>
-
-      
     </BrowserRouter>
     </>
 
