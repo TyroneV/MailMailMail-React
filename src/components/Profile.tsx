@@ -18,7 +18,7 @@ export const Profile: React.FC = () => {
       <Container>
         <Row>
           <Col
-            className="margin-50"
+            className="mt-5"
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Card style={{ width: "60rem" }}>

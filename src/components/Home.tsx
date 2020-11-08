@@ -62,10 +62,9 @@ export const Home: React.FC = () => {
             </Card>
           </Col>
         </Row>
-        <Row>
+        {/* Post Here */}
+        <Row className="mt-5">
             <Col>
-                {/* Post Here */}
-                <Post/>
                 <Post/>
             </Col>
         </Row>
