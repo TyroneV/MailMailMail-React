@@ -7,8 +7,12 @@ export const Feed: React.FC = () =>{
         <>
 
         {/* Post Here */}
+        <div className="mb-5">
         <Post/>
+        </div>
+        <div className="mb-5">
         <Post/>
+        </div>
         </>
     )
 }

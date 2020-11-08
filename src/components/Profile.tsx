@@ -36,13 +36,13 @@ export const Profile: React.FC = () => {
                     <Col sm={9}>
                       <div>
                         <Card.Title>Name Here</Card.Title>
-                        <Card.Subtitle className="mb-2" id="birthdayCard">
+                        {/* <Card.Subtitle className="mb-2" id="birthdayCard">
                           Birthday
                         </Card.Subtitle>
                         <Card.Subtitle className="mb-2" id="jobCard">
                           Job Title
-                        </Card.Subtitle>
-                        <EditProfile/>
+                        </Card.Subtitle> */}
+                        <Button className="blue">Add M3</Button>
                       </div>
                     </Col>
                   </Row>
