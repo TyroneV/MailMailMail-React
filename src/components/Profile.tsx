@@ -1,16 +1,15 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Navbar,
-  Row,
-  Image,
-} from "react-bootstrap";
+import { Card, Col, Container, Navbar, Row, Image } from "react-bootstrap";
+import { UserState } from "../states/states";
 import { EditProfile } from "./EditProfile";
 import { NavBar } from "./NavBar";
 import { Post } from "./Post";
+
+let user: UserState;
+if (sessionStorage.getItem("user")) {
+  const userString = sessionStorage.getItem("user");
+  user = JSON.parse(userString || "");
+}
 
 export const Profile: React.FC = () => {
   return (
@@ -27,22 +26,20 @@ export const Profile: React.FC = () => {
                 <Container className="margin-20">
                   <Row>
                     <Col sm={3}>
-                      <Image
-                        src="/defaultImage.svg"
-                        width="150"
-                        rounded
-                      />
+                      <Image src="/defaultImage.svg" width="150" rounded />
                     </Col>
                     <Col sm={9}>
                       <div>
-                        <Card.Title>Name Here</Card.Title>
+                        <Card.Title>
+                          {user.firstName} {user.lastName}
+                        </Card.Title>
                         {/* <Card.Subtitle className="mb-2" id="birthdayCard">
                           Birthday
                         </Card.Subtitle>
                         <Card.Subtitle className="mb-2" id="jobCard">
                           Job Title
                         </Card.Subtitle> */}
-                        <EditProfile/>
+                        <EditProfile />
                       </div>
                     </Col>
                   </Row>

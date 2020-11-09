@@ -6,21 +6,30 @@ import { RootStore } from "../reducers";
 import { UserState } from "../states/states";
 import { Register } from "./Register";
 
+const axios = require('axios');
+
 export const Login: React.FC = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state: RootStore) => state.login);
 
-
   useEffect(() => {
     createSession();
   }, [user]);
 
+  useEffect(()=>{
+    if(sessionStorage.getItem("user")!= null){
+      window.location.href = "./home";
+    }
+  },[]);
+
   const createSession = () => {
     if (user.email) {
-      window.sessionStorage.setItem("email", user.email);
+      window.sessionStorage.setItem("user",JSON.stringify(user));
     }
   };
+
+
 
   /*
    * Callback that calls the dispatcher
@@ -32,11 +41,21 @@ export const Login: React.FC = () => {
   const loginSubmit = (event: any) => {
     event.preventDefault();
     const form = event.currentTarget;
-    setUser({
-      email: form[0].value,
-      password: form[1].value,
-    });
+    loginUser(form[0].value,form[1].value);
   };
+
+  async function loginUser(userEmail:string,userPassword:string) {
+    const url = "http://localhost:8080/Project2/login.app?email="+userEmail+"&password="+userPassword;
+    try {
+      const response = await axios.post(url);
+      alert("Welcome to Mail Mail Mail "+response.data.firstName+"!");
+      setUser(response.data);
+      sessionStorage.setItem("user",JSON.stringify(response.data));
+      window.location.href = "./home";
+    } catch (error) {
+      alert("LOGIN FAILED!");
+    }
+  }
 
   return (
     <div>

@@ -3,8 +3,12 @@ import { UserState } from "../states/states";
 
 
 const initialState:UserState = {
+    id:0,
     email:'',
-    password:''
+    password:'',
+    firstName:'',
+    lastName:'',
+    photo:''
 }
 
 export const loginReducer = (state:UserState = initialState,action:LoginAction) =>{

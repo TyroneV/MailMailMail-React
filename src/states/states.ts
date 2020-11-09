@@ -1,16 +1,19 @@
 export interface UserState{
+    id:number,
     email:string,
-    password:string
+    password: string,
+    firstName: string,
+    lastName:string,
+    photo: string
 }
 
 
 //this will define the userprofile information
 export interface UserInfo{
+    id:number,
     email:string,
-    photo: any,
-    firstname: string,
-    lastname:string,
-    profile: any,
-    birthday: string,
-    job_title: string
+    password: string,
+    firstName: string,
+    lastName:string,
+    photo: string
 }

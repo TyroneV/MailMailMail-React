@@ -4,7 +4,16 @@ import { CreatePost } from "./CreatePost";
 import { Feed } from "./Feed";
 import { NavBar } from "./NavBar";
 
+const userString = sessionStorage.getItem("user");
+let user: any;
 
+
+const createPost = () => {
+  if (userString) {
+    user = JSON.parse(userString || "");
+  }
+  return <CreatePost user={user} />;
+};
 
 export const Home: React.FC = () => {
   return (
@@ -12,15 +21,13 @@ export const Home: React.FC = () => {
       <NavBar />
       <Container className="mt-5">
         <Row>
-          <Col>
-            <CreatePost/>
-          </Col>
+          <Col>{createPost()}</Col>
         </Row>
         {/* Post Here */}
         <Row className="mt-5">
-            <Col>
-                <Feed/>
-            </Col>
+          <Col>
+            <Feed />
+          </Col>
         </Row>
       </Container>
     </>
