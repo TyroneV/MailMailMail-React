@@ -8,9 +8,22 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { RootStore } from "../reducers";
 import { UserComment } from "./UserComment";
 
-export const Post: React.FC = () => {
+//Refers to the post-id
+interface IProps{
+  id:number
+}
+
+
+
+export const Post: React.FC<IProps> = (props:IProps) => {
+
+  const postState = useSelector((state:RootStore) => state.posts[props.id]);
+
+
   return (
     <>
       <Card>

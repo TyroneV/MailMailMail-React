@@ -10,7 +10,16 @@ export interface UserInfo{
     photo: any,
     firstname: string,
     lastname:string,
-    profile: any,
-    birthday: string,
-    job_title: string
+}
+
+export interface Post{
+    id: number,
+    content: string,
+    photo: string,
+    authorId: number,
+    dateCreated: Date
+}
+
+export interface Posts{
+    posts: Post[]
 }

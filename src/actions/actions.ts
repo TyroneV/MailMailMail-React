@@ -1,11 +1,12 @@
 
-import { UserState, UserInfo } from "../states/states";
+import { UserState, UserInfo, Posts } from "../states/states";
 
 /*
 * The actions
 */
 export type LoginAction = {type: 'LOG_IN',payload: UserState};
 export type searchAction = {type: 'SEARCH', payload: UserInfo}; //change payload to UserInfo
+export type getPostAction = {type: 'GETFEED', payload: Posts};
 
 /*
 * Callbacks that gives back an action
@@ -24,13 +25,23 @@ export const getSearch = (name: string):searchAction  =>{
         photo: "this is a photo",
         firstname: name,
         lastname: "cho",
-        profile: "not sure what this is",
-        birthday: "1/1/2001",
-        job_title: "Helper"
     }
     return({
         type: 'SEARCH',
         payload: profile
     })
 
+}
+
+
+export const getFeed = async (id?:number):getPostAction =>{
+    const res = await axios.get ('http://localhost:8080/Project2/postAll.app')
+    const posts: Posts = {
+
+    }
+
+    return ({
+        type: 'GETFEED',
+        payload: posts
+    })
 }
