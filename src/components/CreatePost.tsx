@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 
-export const CreatePost: React.FC = () => {
+export const CreatePost: React.FC<any> = (user:any) => {
 
 
     return (
@@ -19,7 +19,7 @@ export const CreatePost: React.FC = () => {
                                 />
                             </Col>
                             <Col>
-                                <h5>Author</h5>
+                            <h5>{user.firstName} {user.lastName}</h5>
                                 <Form>
                                     <Form.Group controlId="exampleForm.ControlTextarea1">
                                         <Form.Control

@@ -1,15 +1,20 @@
 export interface UserState{
+    id:number,
     email:string,
-    password:string
+    password: string,
+    firstName: string,
+    lastName:string,
+    photo: string
 }
 
 
 //this will define the userprofile information
 export interface UserInfo{
-    email:string,
-    photo: any,
-    firstname: string,
-    lastname:string,
+    id:number,
+    password: string,
+    firstName: string,
+    lastName:string,
+    photo: string
 }
 
 export interface Post{
@@ -22,4 +27,5 @@ export interface Post{
 
 export interface Posts{
     posts: Post[]
+    
 }

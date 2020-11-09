@@ -21,10 +21,12 @@ export const onLogin = (user:UserState):LoginAction => (
 export const getSearch = (name: string):searchAction  =>{
     //const res = await: 
     const profile:UserInfo={
+        id:0,
         email:"enoch@bomb.com",
+        password:"asdddfff",
         photo: "this is a photo",
-        firstname: name,
-        lastname: "cho",
+        firstName: name,
+        lastName: "cho",
     }
     return({
         type: 'SEARCH',
