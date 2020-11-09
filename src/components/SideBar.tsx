@@ -1,13 +1,15 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
+import { useHistory } from "react-router";
 
 export const SideBar: React.FC = () => {
     const userString = sessionStorage.getItem("user");
     const user = JSON.parse(userString||"");
+    const history = useHistory();
 
     const logout = () =>{
         sessionStorage.removeItem('user');
-        window.location.href="/";
+        history.push("/");
     }
   return (
     <>

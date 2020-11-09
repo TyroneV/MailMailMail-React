@@ -11,6 +11,7 @@ export const Register: React.FC = (props: any) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
+    
     <>
       <Button size="lg" className="blue" onClick={handleShow}>
         Create New Account

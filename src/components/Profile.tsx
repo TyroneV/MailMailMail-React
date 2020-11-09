@@ -1,18 +1,15 @@
 import React from "react";
 import { Card, Col, Container, Navbar, Row, Image } from "react-bootstrap";
-import { UserState } from "../states/states";
+import { Redirect } from "react-router";
 import { EditProfile } from "./EditProfile";
 import { NavBar } from "./NavBar";
 import { Feed } from "./Feed";
 
-let user: UserState;
-if (sessionStorage.getItem("user")) {
-  const userString = sessionStorage.getItem("user");
-  user = JSON.parse(userString || "");
-}
-
 export const Profile: React.FC = () => {
+  const userString = sessionStorage.getItem("user");
+  const user = JSON.parse(userString||"");
   return (
+    !sessionStorage.getItem('user')?<Redirect to="/"/>:
     <>
       <NavBar />
       <Container>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router";
 import { onLogin } from "../actions/actions";
 import { RootStore } from "../reducers";
 import { UserState } from "../states/states";
@@ -10,6 +11,7 @@ const axios = require('axios');
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const user = useSelector((state: RootStore) => state.login);
 
@@ -28,8 +30,6 @@ export const Login: React.FC = () => {
       window.sessionStorage.setItem("user",JSON.stringify(user));
     }
   };
-
-
 
   /*
    * Callback that calls the dispatcher
@@ -50,15 +50,16 @@ export const Login: React.FC = () => {
       const response = await axios.post(url);
       alert("Welcome to Mail Mail Mail "+response.data.firstName+"!");
       setUser(response.data);
+      history.push('/home');
       sessionStorage.setItem("user",JSON.stringify(response.data));
-      window.location.href = "./home";
     } catch (error) {
       alert("LOGIN FAILED!");
     }
   }
 
   return (
-    <div>
+    sessionStorage.getItem('user')?<Redirect to="/home"/>:
+    <>
       <Container  className="fill border white width">
         <Row>
           <Col className="margin-50" style={{display: 'flex', justifyContent: 'center'}}>
@@ -106,6 +107,6 @@ export const Login: React.FC = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </>
   );
 };
