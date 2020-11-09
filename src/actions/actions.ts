@@ -35,10 +35,10 @@ export const getSearch = (name: string):searchAction  =>{
 
 
 export const getFeed = async (id?:number):getPostAction =>{
-    const res = await axios.get ('http://localhost:8080/Project2/postAll.app')
-    const posts: Posts = {
-
-    }
+    const res = await .get('http://localhost:8080/Project2/postAll.app')
+    const args = await res.json();
+    const posts: Posts = args;
+    console.log(posts);
 
     return ({
         type: 'GETFEED',
