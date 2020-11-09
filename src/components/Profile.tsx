@@ -3,7 +3,7 @@ import { Card, Col, Container, Navbar, Row, Image } from "react-bootstrap";
 import { UserState } from "../states/states";
 import { EditProfile } from "./EditProfile";
 import { NavBar } from "./NavBar";
-import { Post } from "./Post";
+import { Feed } from "./Feed";
 
 let user: UserState;
 if (sessionStorage.getItem("user")) {
@@ -57,7 +57,7 @@ export const Profile: React.FC = () => {
                   <Navbar.Brand href="#home">Friends</Navbar.Brand>
                 </Navbar>
                 {/* Posts here */}
-                <Post />
+                <Feed/>
               </Card.Body>
             </Card>
           </Col>

@@ -23,10 +23,9 @@ export const Feed: React.FC<IProps> = (props:IProps) =>{
 
     return (
         <>
-
-        {/* Post Here */}
+    
         <div className="mb-5">
-            {feedState.map((e:any, i:number) => {
+            {feedState.posts.map((e:any, i:number) => {
                 <Post id={i}/>
             })}
         </div>

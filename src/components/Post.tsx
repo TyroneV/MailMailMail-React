@@ -11,6 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
 import { UserComment } from "./UserComment";
+import {PostInfo} from '../states/states';
 
 //Refers to the post-id
 interface IProps{
@@ -21,8 +22,8 @@ interface IProps{
 
 export const Post: React.FC<IProps> = (props:IProps) => {
 
-  const postState = useSelector((state:RootStore) => state.posts[props.id]);
-
+  const postState = useSelector((state:RootStore):PostInfo => state.posts.posts[props.id]);
+  // const usersState = useSelector((state:RootStore) => state.users);
 
   return (
     <>
@@ -30,14 +31,14 @@ export const Post: React.FC<IProps> = (props:IProps) => {
         <Card.Body>
           <Card.Title>
             <img src="/defaultImage.svg" width="50" />
-            <p className="m-2 d-inline">Author</p>
+            <p className="m-2 d-inline">{postState.authorId}</p>
           </Card.Title>
           <Card.Img variant="top" src="/apost.jpg" />
           <Card className="mb-4">
             <Container>
               <Row>
                 <Col className="m-4">
-                  <Card.Text>My post is from australia.</Card.Text>
+                  <Card.Text>{postState.content}</Card.Text>
                 </Col>
               </Row>
               <Row className="mb-4">

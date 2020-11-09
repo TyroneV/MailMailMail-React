@@ -1,12 +1,13 @@
 
-import { UserState, UserInfo, Posts } from "../states/states";
+import { UserState, UserInfo, PostInfo } from "../states/states";
+import axios from'axios';
 
 /*
 * The actions
 */
 export type LoginAction = {type: 'LOG_IN',payload: UserState};
 export type searchAction = {type: 'SEARCH', payload: UserInfo}; //change payload to UserInfo
-export type getPostAction = {type: 'GETFEED', payload: Posts};
+export type getPostAction = {type: 'GETFEED', payload: PostInfo[]};
 
 /*
 * Callbacks that gives back an action
@@ -36,14 +37,12 @@ export const getSearch = (name: string):searchAction  =>{
 }
 
 
-export const getFeed = async (id?:number):getPostAction =>{
-    const res = await .get('http://localhost:8080/Project2/postAll.app')
-    const args = await res.json();
-    const posts: Posts = args;
+export const getFeed = async (id?:number) => async (dispatch:any) =>{
+    const res = await axios.get('http://localhost:8080/Project2/postAll.app')
+    const posts: PostInfo[] = await res.data;
     console.log(posts);
-
-    return ({
+    dispatch({
         type: 'GETFEED',
-        payload: posts
+        payload:posts
     })
 }
