@@ -21,10 +21,9 @@ interface IProps{
 
 
 export const Post: React.FC<IProps> = (props:IProps) => {
-
+  console.log("this is the props: " + props.id);
   const postState = useSelector((state:RootStore):PostInfo => state.posts.posts[props.id]);
   // const usersState = useSelector((state:RootStore) => state.users);
-
   return (
     <>
       <Card>

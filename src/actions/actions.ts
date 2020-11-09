@@ -37,10 +37,16 @@ export const getSearch = (name: string):searchAction  =>{
 }
 
 
-export const getFeed = async (id?:number) => async (dispatch:any) =>{
-    const res = await axios.get('http://localhost:8080/Project2/postAll.app')
+export const getFeed = (id:number) => async (dispatch:any) =>{
+    let url = "";
+    if(id == 0){
+        url = 'http://localhost:8080/Project2/postAll.app'
+    } else{
+        url = `http://localhost:8080/Project2/postAUser.app?id=${id}`
+    }
+    const res = await axios.get(url)
     const posts: PostInfo[] = await res.data;
-    console.log(posts);
+    //console.log("This is the posts" + posts[1].content);
     dispatch({
         type: 'GETFEED',
         payload:posts
