@@ -1,4 +1,5 @@
 import{combineReducers} from 'redux';
+import allUsersReducer from './allUsersReducer';
 import feedReducer from './feedReducer';
 import { loginReducer } from './loginReducer';
 import searchReducer from './searchReducer';
@@ -9,7 +10,8 @@ import searchReducer from './searchReducer';
 export const allReducers = combineReducers({
     login : loginReducer,
     search: searchReducer,
-    posts: feedReducer
+    posts: feedReducer,
+    users: allUsersReducer
 
 });
 

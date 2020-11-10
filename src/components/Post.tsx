@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   Button,
@@ -11,7 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
 import { UserComment } from "./UserComment";
-import {PostInfo} from '../states/states';
+import {PostInfo, UserInfo} from '../states/states';
 
 //Refers to the post-id
 interface IProps{
@@ -23,14 +23,44 @@ interface IProps{
 export const Post: React.FC<IProps> = (props:IProps) => {
   console.log("this is the props: " + props.id);
   const postState = useSelector((state:RootStore):PostInfo => state.posts.posts[props.id]);
-  // const usersState = useSelector((state:RootStore) => state.users);
+  //const usersState = useSelector((state:RootStore) => state.users);
+
+  const [user, setUser] = useState<UserInfo>();
+  
+  const findUser = () =>{
+    // usersState.users.forEach(function (value) {
+    //   console.log("in the find user");
+    //   if(postState.authorId === value.id){
+    //     setUser(value);
+    //     console.log("user is set")
+    //     if(user){
+    //       return (
+    //         <p className="m-2 d-inline">{user.firstName} {user.lastName}</p>
+    //       )
+    //     }
+    //   }
+    //   break;
+    // })
+    let i:any;
+    // for(i in usersState.users){
+    //     if(postState.authorId === usersState.users[i].id){
+    //       setUser(usersState.users[i]);
+    //     }
+    // }
+    return(
+      <h1>Hello</h1>
+    )
+
+
+  }
+  
   return (
     <>
       <Card>
         <Card.Body>
           <Card.Title>
             <img src="/defaultImage.svg" width="50" />
-            <p className="m-2 d-inline">{postState.authorId}</p>
+            {findUser()}
           </Card.Title>
           <Card.Img variant="top" src="/apost.jpg" />
           <Card className="mb-4">

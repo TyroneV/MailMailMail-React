@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { RootStore } from '../reducers';
-import {getSearch} from '../actions/actions'
+import {getSearch, getUsers} from '../actions/actions'
 
 
 /**
@@ -10,8 +10,9 @@ import {getSearch} from '../actions/actions'
  * eventually just call the profile component's reducer/action. 
  */
 export  const SearchBar= ()=> {
-
+    
     const dispatch = useDispatch();
+    //dispatch(getUsers());
     const [search ,setSearch] = useState("");
     const searchState = useSelector((state:RootStore) => state.search);
     //console.log(searchState);
