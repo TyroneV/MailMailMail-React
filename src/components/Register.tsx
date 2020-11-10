@@ -32,9 +32,7 @@ export const Register: React.FC = (props: any) => {
 
   const submitUserDb = async (user:any) =>{
     try {
-    console.log(user);
-    const json = JSON.stringify({ user });
-    const result = await axios.post('http://localhost:8080/Project2/createUser.app', json);
+    const result = await axios.post('http://localhost:8080/Project2/createUser.app', user);
     console.log(result.data);
       alert("SUCCESSFULLY CREATED USER!");
     }catch(error){
