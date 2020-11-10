@@ -46,7 +46,6 @@ export const Login: React.FC = () => {
 
   async function loginUser(userEmail:string,userPassword:string) {
     const url = "http://18.191.119.230:8081/Project2-1.0.0/login.app?email="+userEmail+"&password="+userPassword;
-    //const url = "http://localhost:8080/Project2/login.app?email="+userEmail+"&password="+userPassword;
     try {
       const response = await axios.post(url);
       alert("Welcome to Mail Mail Mail "+response.data.firstName+"!");
@@ -65,7 +64,7 @@ export const Login: React.FC = () => {
       <Container  className="fill border white width">
         <Row>
           <Col className="margin-50" style={{display: 'flex', justifyContent: 'center'}}>
-            <img src={"/longTitle.svg"} width="1000"/>
+            <img src={"/images/longTitle.svg"} width="1000"/>
           </Col>
         </Row>
         <Row className="margin-50">

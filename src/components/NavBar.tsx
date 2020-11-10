@@ -22,7 +22,7 @@ export const NavBar: React.FC = () => {
     <div>
       <Navbar color="dark" dark expand="md">
           <Image
-            src="/longTitle.svg"
+            src="/images/longTitle.svg"
             height="50"
             className="d-inline-block align-top mr-5"
             alt="React Bootstrap logo"

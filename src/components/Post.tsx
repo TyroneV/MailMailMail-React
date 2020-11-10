@@ -59,8 +59,8 @@ export const Post: React.FC<IProps> = (props:IProps) => {
       <Card>
         <Card.Body>
           <Card.Title>
-            <img src="/defaultImage.svg" width="50" />
-            {findUser()}
+            <img src="/images/defaultImage.svg" width="50" />
+            <p className="m-2 d-inline">{postState.authorId}</p>
           </Card.Title>
           <Card.Img variant="top" src="/apost.jpg" />
           <Card className="mb-4">
@@ -74,7 +74,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
                 <Col>
                   <input
                     type="image"
-                    src="/thumbsUP.svg"
+                    src="/images/thumbsUP.svg"
                     width="30"
                     className="d-inline"
                   />
