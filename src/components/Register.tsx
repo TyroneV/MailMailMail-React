@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
+const axios = require('axios');
+
 export const Register: React.FC = (props: any) => {
 
   // if(sessionStorage.getItem("user")){
@@ -10,8 +12,38 @@ export const Register: React.FC = (props: any) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const registerUser = (event:any) =>{
+    event.preventDefault();
+    const form = event.currentTarget;
+    if(form[1].value===form[2].value){
+    const user = {
+        email:form[0].value,
+        password:form[1].value,
+        firstName:form[3].value,
+        lastName:form[4].value,
+        photo:''
+    }
+    submitUserDb(user);
+  }else{
+    alert('Password Does not match!');
+  }
+  }
+
+  const submitUserDb = async (user:any) =>{
+    try {
+    console.log(user);
+    const json = JSON.stringify({ user });
+    const result = await axios.post('http://localhost:8080/Project2/createUser.app', json);
+    console.log(result.data);
+      alert("SUCCESSFULLY CREATED USER!");
+    }catch(error){
+      alert("FAILED TO CREATE USER!");
+    }
+  }
+
   return (
-    
+  
     <>
       <Button size="lg" className="blue" onClick={handleShow}>
         Create New Account
@@ -28,7 +60,7 @@ export const Register: React.FC = (props: any) => {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={registerUser}>
             <Form.Group controlId="formEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" placeholder="Enter Email" required/>

@@ -89,7 +89,6 @@ export const EditProfile: React.FC = (props: any) => {
             <Button className="blue" type="submit">
             Save
           </Button>
-          <Button className = "red" onClick={handleClose}>Cancel</Button>
           </Form>
         </Modal.Body>
       </Modal>

@@ -50,8 +50,9 @@ export const Login: React.FC = () => {
       const response = await axios.post(url);
       alert("Welcome to Mail Mail Mail "+response.data.firstName+"!");
       setUser(response.data);
-      history.push('/home');
       sessionStorage.setItem("user",JSON.stringify(response.data));
+      history.push('/home');
+
     } catch (error) {
       alert("LOGIN FAILED!");
     }
@@ -97,11 +98,13 @@ export const Login: React.FC = () => {
                     </Row>
                     <Row>
                     <Col style={{display: 'flex', justifyContent: 'center'}}>
-                    <Register/>
                     </Col>
                     </Row>
                   </Container>
                 </Form>
+                <Container style={{display: 'flex', justifyContent: 'center'}}>
+                  <Register/>
+                </Container>
               </Card.Body>
             </Card>
           </Col>
