@@ -23,7 +23,7 @@ export const Profile: React.FC = () => {
                 <Container className="margin-20">
                   <Row>
                     <Col sm={3}>
-                      <Image src="/defaultImage.svg" width="150" rounded />
+                      <Image src="/images/defaultImage.svg" width="150" rounded />
                     </Col>
                     <Col sm={9}>
                       <div>

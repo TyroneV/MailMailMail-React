@@ -64,7 +64,7 @@ export const Login: React.FC = () => {
       <Container  className="fill border white width">
         <Row>
           <Col className="margin-50" style={{display: 'flex', justifyContent: 'center'}}>
-            <img src={"/longTitle.svg"} width="1000"/>
+            <img src={"/images/longTitle.svg"} width="1000"/>
           </Col>
         </Row>
         <Row className="margin-50">
