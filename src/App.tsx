@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Login } from './components/Login';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Profile } from './components/Profile';
+import { Home } from './components/Home';
 
 function App() {
+
+
+  // New components/pages should be added here. 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <BrowserRouter basename="/">
+      <Switch>
+        <Route exact path="/" component= {Login}/>
+        {/*This should be the home page component*/}
+        <Route path ="/home" component = {Home}/>
+        <Route path ="/me" component = {Profile}/>
+      </Switch>
+    </BrowserRouter>
+    </>
+
   );
 }
 

@@ -1,0 +1,38 @@
+$blue:  rgb(32, 85, 138);
+$orange: rgb(255, 181, 44);
+
+body{
+    background-color: $blue;
+}
+
+.margin-50{
+    margin: 50px 50px 50px 50px;
+}
+
+.margin-20{
+    margin: 20px 20px 20px 20px;
+}
+
+.white{
+    background-color: whitesmoke;
+}
+
+.blue{
+    background-color:$blue;
+    color: $orange
+}
+
+.orange{
+    background-color: $orange;
+    color: white;
+}
+
+.width{
+    min-width: 80vw;
+    width: 80%;
+}
+
+.fill {
+    min-height: 100vh;
+    height: 100%;
+}
