@@ -19,7 +19,7 @@ export const Home: React.FC = () => {
         {/* Post Here */}
         <Row className="mt-5">
           <Col>
-            <Feed />
+            <Feed id={0}/>
           </Col>
         </Row>
       </Container>

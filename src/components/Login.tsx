@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
-import { onLogin } from "../actions/actions";
+import {  onLogin } from "../actions/actions";
 import { RootStore } from "../reducers";
 import { UserState } from "../states/states";
 import { Register } from "./Register";
