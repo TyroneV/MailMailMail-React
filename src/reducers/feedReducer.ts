@@ -19,9 +19,14 @@ const initialState: IFeedState ={
 }
 
 const feedReducer = (state:IFeedState = initialState, action: any): IFeedState =>{
-    console.log("in the reducer");
-    return {
-        posts:action.payload
+    switch(action.type){
+        case 'GETFEED':
+            console.log("in the reducer");
+            return {
+                posts:action.payload
+            }
+        default:
+            return state;
     }
 }
 

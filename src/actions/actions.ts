@@ -39,7 +39,7 @@ export const getSearch = (name: string):searchAction  =>{
 
 export const getFeed = (id:number) => async (dispatch:any) =>{
     let url = "";
-    if(id == 0){
+    if(id === 0){
         url = 'http://localhost:8080/Project2/postAll.app'
     } else{
         url = `http://localhost:8080/Project2/postAUser.app?id=${id}`

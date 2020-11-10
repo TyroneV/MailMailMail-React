@@ -12,7 +12,7 @@ import thunk from 'redux-thunk';
 
 
 // export const store = createStore(allReducers, composeEnhancers );
-
+const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
 export const store = createStore(allReducers, composeWithDevTools(applyMiddleware(thunk)));
 
 

@@ -15,9 +15,8 @@ interface IProps {
 export const Feed: React.FC<IProps> = (props:IProps) =>{
  
     const dispatch = useDispatch();
-    //dispatch(getFeed);
     const feedState = useSelector((state:RootStore) => state.posts)
-
+    console.log(feedState);
     //this should run once to load the posts. 
     useEffect(() => {
        dispatch(getFeed(0));
@@ -26,11 +25,11 @@ export const Feed: React.FC<IProps> = (props:IProps) =>{
     return (
         <>
         {feedState.posts && (
-        <div className="mb-5">
-            {feedState.posts.map((e:any, i:number) => {
-                return <Post id={i}/>
-            })}
-        </div>
+            <div className="mb-5">
+                {feedState.posts.map((e:any, i:number) => {
+                    return <Post id={i}/>
+                })}
+            </div>
 
         )}
         </>
