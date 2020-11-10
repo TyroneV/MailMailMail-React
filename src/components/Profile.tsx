@@ -1,23 +1,21 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Navbar,
-  Row,
-} from "react-bootstrap";
+import { Card, Col, Container, Navbar, Row, Image } from "react-bootstrap";
+import { Redirect } from "react-router";
+import { EditProfile } from "./EditProfile";
 import { NavBar } from "./NavBar";
-import { Post } from "./Post";
+import { Feed } from "./Feed";
 
 export const Profile: React.FC = () => {
+  const userString = sessionStorage.getItem("user");
+  const user = JSON.parse(userString||"");
   return (
+    !sessionStorage.getItem('user')?<Redirect to="/"/>:
     <>
       <NavBar />
       <Container>
         <Row>
           <Col
-            className="margin-50"
+            className="mt-5"
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Card style={{ width: "60rem" }}>
@@ -25,35 +23,38 @@ export const Profile: React.FC = () => {
                 <Container className="margin-20">
                   <Row>
                     <Col sm={3}>
-                      <img
-                        src="/defaultImage.svg"
-                        width="150"
-                        height="150"
-                        id="userImageCard"
-                      />
+                      <Image src="/images/defaultImage.svg" width="150" rounded />
                     </Col>
                     <Col sm={9}>
                       <div>
-                        <Card.Title>Name Here</Card.Title>
-                        <Card.Subtitle className="mb-2" id="birthdayCard">
+                        <Card.Title>
+                          {user.firstName} {user.lastName}
+                        </Card.Title>
+                        {/* <Card.Subtitle className="mb-2" id="birthdayCard">
                           Birthday
                         </Card.Subtitle>
                         <Card.Subtitle className="mb-2" id="jobCard">
                           Job Title
-                        </Card.Subtitle>
-                        <Button className="blue">Add M3</Button>
+                        </Card.Subtitle> */}
+                        <EditProfile />
                       </div>
                     </Col>
                   </Row>
                 </Container>
                 <Navbar className="blue" variant="dark">
-                  <Navbar.Brand className="mr-auto" href="#home">Posts</Navbar.Brand>
-                  <Navbar.Brand className="mr-auto" href="#home">Photos</Navbar.Brand>
-                  <Navbar.Brand className="mr-auto" href="#home">About</Navbar.Brand>
+                  <Navbar.Brand className="mr-auto" href="#home">
+                    Posts
+                  </Navbar.Brand>
+                  <Navbar.Brand className="mr-auto" href="#home">
+                    Photos
+                  </Navbar.Brand>
+                  <Navbar.Brand className="mr-auto" href="#home">
+                    About
+                  </Navbar.Brand>
                   <Navbar.Brand href="#home">Friends</Navbar.Brand>
                 </Navbar>
                 {/* Posts here */}
-                <Post/>
+                <Feed/>
               </Card.Body>
             </Card>
           </Col>

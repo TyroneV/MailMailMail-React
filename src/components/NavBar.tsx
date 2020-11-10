@@ -8,27 +8,24 @@ import {
   NavbarToggler,
   NavbarBrand,
 } from "reactstrap";
+import {Image} from "react-bootstrap";
+import { SideBar } from "./SideBar";
+import { useHistory } from "react-router";
 
 export const NavBar: React.FC = () => {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-
-  //This handles the logout getting clicked.
-  const handleClick = (e: any) => {
-    window.sessionStorage.clear();
-  };
 
   return (
     <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/home">
-        <img
-        src="/longTitle.svg"
-        height="50"
-        className="d-inline-block align-top"
-        alt="React Bootstrap logo"
-      />
-        </NavbarBrand>
+          <Image
+            src="/images/longTitle.svg"
+            height="50"
+            className="d-inline-block align-top mr-5"
+            alt="React Bootstrap logo"
+          />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -36,18 +33,34 @@ export const NavBar: React.FC = () => {
               <SearchBar />
             </NavItem>
             <NavItem>
-              <NavbarBrand href="/home" className="mr-4">Home</NavbarBrand>
+              <NavbarBrand
+                type="button"
+                onClick={() => {
+                  history.push("/home");
+                }}
+                className="mr-4"
+              >
+                Home
+              </NavbarBrand>
             </NavItem>
             <NavItem>
-              <NavbarBrand href="/me">Me</NavbarBrand>
+              <NavbarBrand
+                type="button"
+                onClick={() => {
+                  history.push("/me");
+                }}
+              >
+                M3
+              </NavbarBrand>
             </NavItem>
           </Nav>
           <Nav>
             {/* this is the log out button */}
             <NavItem className="mr-auto">
-              <NavbarBrand href="/" onClick={handleClick}>
+              {/* <NavbarBrand href="/" onClick={handleClick}>
                 Logout
-              </NavbarBrand>
+              </NavbarBrand> */}
+              <SideBar />
             </NavItem>
           </Nav>
         </Collapse>

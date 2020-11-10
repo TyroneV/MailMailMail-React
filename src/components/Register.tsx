@@ -1,12 +1,47 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
-export const Register: React.FC = (props: any) => {
-  const [show, setShow] = useState(false);
+const axios = require('axios');
 
+export const Register: React.FC = (props: any) => {
+
+  // if(sessionStorage.getItem("user")){
+  //   window.location.href = "./home";
+  // }
+
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const registerUser = (event:any) =>{
+    event.preventDefault();
+    const form = event.currentTarget;
+    if(form[1].value===form[2].value){
+    const user = {
+        email:form[0].value,
+        password:form[1].value,
+        firstName:form[3].value,
+        lastName:form[4].value,
+        photo:''
+    }
+    submitUserDb(user);
+  }else{
+    alert('Password Does not match!');
+  }
+  }
+
+  const submitUserDb = async (user:any) =>{
+    try {
+    const result = await axios.post('http://localhost:8080/Project2/createUser.app', user);
+    console.log(result.data);
+      alert("SUCCESSFULLY CREATED USER!");
+    }catch(error){
+      alert("FAILED TO CREATE USER!");
+    }
+  }
+
   return (
+  
     <>
       <Button size="lg" className="blue" onClick={handleShow}>
         Create New Account
@@ -23,7 +58,7 @@ export const Register: React.FC = (props: any) => {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={registerUser}>
             <Form.Group controlId="formEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" placeholder="Enter Email" required/>
@@ -44,14 +79,14 @@ export const Register: React.FC = (props: any) => {
               <Form.Label>Last Name</Form.Label>
               <Form.Control type="text" placeholder="Enter Last Name" required/>
             </Form.Group>
-            <Form.Group controlId="formDate">
+            {/* <Form.Group controlId="formDate">
               <Form.Label>Date of Birth</Form.Label>
               <Form.Control type="date" required/>
             </Form.Group >
             <Form.Group controlId="formJobTitle">
               <Form.Label>Job Title</Form.Label>
               <Form.Control type="text" placeholder="Enter Job Title" />
-            </Form.Group>
+            </Form.Group> */}
             <Button className="blue" type="submit">
             Submit
           </Button>
