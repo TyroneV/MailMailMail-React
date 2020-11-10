@@ -27,6 +27,5 @@ phases:
       - yarn build
 artifacts:
   files:
-    - "**/*"
-discard-paths: no
-base-directory: build
+    - "build/*"
+discard-paths: yes
