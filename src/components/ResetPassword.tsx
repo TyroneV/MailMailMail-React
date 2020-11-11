@@ -19,13 +19,10 @@ export const ResetPassword: React.FC = () => {
     try {
       const data = await axios.get(url + email);
       const targetCode = data.data.password;
+      const newUser = data.data;
       if (code === targetCode) {
-          console.log(data.data);
         if (pass1 === pass2) {
-          const newUser = {
-            id: data.data.id,
-            password: event.currentTarget[1],
-          };
+          newUser.password = pass2;
           console.log(newUser);
           try{
           await axios.put(
