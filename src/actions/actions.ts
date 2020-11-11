@@ -4,8 +4,8 @@ import axios from'axios';
 import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
 
-//const pref = "http://18.191.119.230:8081/Project2-1.0.0/";
-const pref ="http://localhost:8080/Project2/"
+const pref = "http://18.191.119.230:8081/Project2-1.0.0/";
+//const pref ="http://localhost:8080/Project2/"
 
 /*
 * The actions

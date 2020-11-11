@@ -21,14 +21,7 @@ const initialState:UserInfo = {
 }
 
 export const OtherProfile: React.FC = () => {
-  const userString = sessionStorage.getItem("user");
-  const sessionUser = JSON.parse(userString||"");
-  const dispatch = useDispatch();
   const user = useSelector((state: RootStore) => state.otherUser);
-
-
-  
-
   return (
     !sessionStorage.getItem('user')?<Redirect to="/"/>:
     <>
