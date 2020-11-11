@@ -31,7 +31,7 @@ export const NavBar: React.FC = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem className="mr-4">
-              <SearchBar />
+              {/* <SearchBar /> */}
               <AutoCompleteBar/>
             </NavItem>
             <NavItem>

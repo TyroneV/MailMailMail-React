@@ -2,8 +2,8 @@
 import { UserState, UserInfo, PostInfo } from "../states/states";
 import axios from'axios';
 
-const pref = "http://18.191.119.230:8081/Project2-1.0.0/";
-//const pref ="http://localhost:8080/Project2"
+//const pref = "http://18.191.119.230:8081/Project2-1.0.0/";
+const pref ="http://localhost:8080/Project2/"
 
 /*
 * The actions
@@ -47,16 +47,23 @@ export const getFeed = (id:number) => async (dispatch:any) =>{
     } else{
         url = `${pref}postAUser.app?id=${id}`
     }
-    const res = await axios.get(url)
-    const posts: PostInfo[] = await res.data;
-    //console.log("This is the posts" + posts[1].content);
-    dispatch({
-        type: 'GETFEED',
-        payload:posts
-    })
+    try{
+
+        const res = await axios.get(url)
+        const posts: PostInfo[] = await res.data;
+        //console.log("This is the posts" + posts[1].content);
+        dispatch({
+            type: 'GETFEED',
+            payload:posts
+        })
+    } catch (error){
+        console.log(error.message)
+        return error.message
+    }
 }
 
 export const getUsers = () => async(dispatch:any) => {
+    
     let url =`${pref}userAll.app`
     const res = await axios.get(url);
     const allUsers: UserInfo[] = await res.data;

@@ -6,6 +6,7 @@ import { getUsers } from '../actions/actions';
 
 
 
+
 export const AutoCompleteBar: React.FC = () =>{
 
 
@@ -48,7 +49,7 @@ export const AutoCompleteBar: React.FC = () =>{
         }
         return(
             <ul>
-                {suggestions.map((item:string) => <li onClick={() => suggestionSelected(item)}>{item}</li>)}
+                {suggestions.map((item:string, i:number) => <li onClick={() => suggestionSelected(item)} key={i}>{item}</li>)}
             </ul>
         )
     }

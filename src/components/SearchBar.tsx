@@ -1,8 +1,8 @@
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Button } from 'react-bootstrap';
+import { Form} from 'react-bootstrap';
 import { RootStore } from '../reducers';
-import {getSearch, getUsers} from '../actions/actions'
+import {getSearch} from '../actions/actions'
 
 
 /**

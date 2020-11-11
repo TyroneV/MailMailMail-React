@@ -17,6 +17,6 @@ export const loginReducer = (state:UserState = initialState,action:LoginAction) 
             return action.payload;
         }
         default:
-            return initialState;
+            return state;
     }
 }
