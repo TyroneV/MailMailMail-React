@@ -19,9 +19,9 @@ export const CreatePost: React.FC = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStore) => state.login);
 
-  useEffect(() => {
-    setUser(sessionUser);
-  }, []);
+  // useEffect(() => {
+  //   setUser(sessionUser);
+  // }, []);
 
   const setUser = (u: UserState) => {
     dispatch(onLogin(u));

@@ -36,3 +36,62 @@ body{
     min-height: 100vh;
     height: 100%;
 }
+
+.AutoCompleteText {
+    width:100%;
+    border: 1px solid grey;
+    // box-shadow: 1px 1px 20px -1px #F9ab55;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: black;
+    position:relative;
+    border-radius:3px;
+    
+}
+
+.AutoCompleteText input {
+    width:100%;
+    border:none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color:black;
+    padding: 10px 5px;
+    box-sizing: border-box;
+    outline: none;
+    border-radius:3px;
+}
+
+.AutoCompleteText ul {
+    width:100%;
+    list-style-type:  none;
+    text-align: left;
+    margin:0;
+    padding:0;
+    box-shadow: 1px 1px 20px -1px grey;
+    border-top: 1px solid grey;
+    // border-left: 1px solid #F9ab55;
+    // border-right: 1px solid #F9ab55;
+    // border-bottom: 1px solid #F9ab55;
+    background:white;
+    position: absolute;
+    z-index: 5;
+}
+
+.AutoCompleteText ul::before {
+    content:"";
+}
+
+.AutoCompleteText li{
+    width:100%;
+    padding:10px 5px;
+    cursor:pointer;
+}
+
+.AutoCompleteText a{
+    width:100%;
+}
+
+.AutoCompleteText li:hover{
+    text-decoration: underline;
+    background-color: rgb(221, 221, 221);
+}
