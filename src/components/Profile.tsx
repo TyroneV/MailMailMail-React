@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, Col, Container, Navbar, Row, Image } from "react-bootstrap";
 import { Redirect } from "react-router";
 import { EditProfile } from "./EditProfile";
 import { NavBar } from "./NavBar";
 import { Feed } from "./Feed";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
 
 
