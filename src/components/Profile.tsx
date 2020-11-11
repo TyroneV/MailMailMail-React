@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Col, Container, Navbar, Row, Image } from "react-bootstrap";
 import { Redirect } from "react-router";
 import { EditProfile } from "./EditProfile";
 import { NavBar } from "./NavBar";
 import { Feed } from "./Feed";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "../reducers";
+import { onLogin } from "../actions/actions";
+import { UserState } from "../states/states";
 
 export const Profile: React.FC = () => {
   const userString = sessionStorage.getItem("user");
-  const user = JSON.parse(userString||"");
+  const sessionUser = JSON.parse(userString||"");
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootStore) => state.login);
+
+  useEffect(() => {
+    setUser(sessionUser);
+  }, []);
+  
+  const setUser = (u: UserState) => {
+    dispatch(onLogin(u));
+  };
+
   return (
     !sessionStorage.getItem('user')?<Redirect to="/"/>:
     <>

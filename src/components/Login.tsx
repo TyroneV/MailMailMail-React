@@ -25,6 +25,7 @@ export const Login: React.FC = () => {
     }
   },[]);
 
+
   const createSession = () => {
     if (user.email) {
       window.sessionStorage.setItem("user",JSON.stringify(user));
