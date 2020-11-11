@@ -32,12 +32,7 @@ export const Profile: React.FC = () => {
                         <Card.Title>
                           {user.firstName} {user.lastName}
                         </Card.Title>
-                        {/* <Card.Subtitle className="mb-2" id="birthdayCard">
-                          Birthday
-                        </Card.Subtitle>
-                        <Card.Subtitle className="mb-2" id="jobCard">
-                          Job Title
-                        </Card.Subtitle> */}
+      
                         <EditProfile />
                       </div>
                     </Col>
