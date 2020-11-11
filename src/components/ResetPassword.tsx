@@ -7,28 +7,35 @@ const axios = require("axios");
 export const ResetPassword: React.FC = () => {
   const history = useHistory();
 
-  const submitReset = (event: any) => {
+  const submitReset = async(event: any) => {
     event.preventDefault();
     const re = "/reset/pass/";
     const email = window.location.pathname.replace(re, "");
     const url =
       "http://18.191.119.230:8081/Project2-1.0.0/userByEmail.app?email=";
-    const code = event.currentTarget[0];
-    let targetCode;
+    const code = event.currentTarget[0].value;
+    const pass1 = event.currentTarget[1].value;
+    const pass2 = event.currentTarget[2].value;
     try {
-      const data = axios.get(url + email);
-      targetCode = data.data.password;
+      const data = await axios.get(url + email);
+      const targetCode = data.data.password;
       if (code === targetCode) {
-        if (event.currentTarget[1] === event.currentTarget[2]) {
+          console.log(data.data);
+        if (pass1 === pass2) {
           const newUser = {
             id: data.data.id,
             password: event.currentTarget[1],
           };
-          axios.put(
+          console.log(newUser);
+          try{
+          await axios.put(
             "http://18.191.119.230:8081/Project2-1.0.0/updateUser.app",
             newUser
           );
           alert("New Password set!");
+          }catch(error){
+              alert("Failed to update!");
+          }
           history.push("/");
         } else {
           alert("Password does not match!");
@@ -37,6 +44,7 @@ export const ResetPassword: React.FC = () => {
         alert("Code does not match!");
       }
     } catch (error) {
+        console.log(error);
       alert("Invalid Email!");
     }
   };
@@ -45,7 +53,7 @@ export const ResetPassword: React.FC = () => {
     <>
       <Container>
         <Row>
-          <Col>
+          <Col  className="mt-5">
             <Card>
               <Card.Header className="blue">Password Reset</Card.Header>
               <Card.Body>
@@ -58,17 +66,17 @@ export const ResetPassword: React.FC = () => {
                     <Form.Label>New Password</Form.Label>
                     <Form.Control
                       type="password"
-                      placeholder="New Password..."
+                      placeholder="New Password"
                     />
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
                       type="password"
-                      placeholder="Confirm Password..."
+                      placeholder="Confirm Password"
                     />
                   </Form.Group>
-                  <Button variant="primary" type="submit">
+                  <Button className="blue" type="submit">
                     Submit
                   </Button>
                 </Form>
