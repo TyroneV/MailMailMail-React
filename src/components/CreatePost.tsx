@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Card,
   Container,
@@ -8,24 +8,14 @@ import {
   Button,
   Image,
 } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { onLogin } from "../actions/actions";
+import { useSelector } from "react-redux";
+
 import { RootStore } from "../reducers";
-import { UserState } from "../states/states";
+
 
 export const CreatePost: React.FC = () => {
-  const userString = sessionStorage.getItem("user");
-  const sessionUser = JSON.parse(userString||"");
-  const dispatch = useDispatch();
   const user = useSelector((state: RootStore) => state.login);
 
-  // useEffect(() => {
-  //   setUser(sessionUser);
-  // }, []);
-
-  const setUser = (u: UserState) => {
-    dispatch(onLogin(u));
-  };
 
   return (
     <>
