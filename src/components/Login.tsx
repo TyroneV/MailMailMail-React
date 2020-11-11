@@ -47,7 +47,7 @@ export const Login: React.FC = () => {
 
   async function loginUser(userEmail: string, userPassword: string) {
     const url =
-      "http://18.191.119.230:8081/Project2-1.0.0/login.app?email=" +
+      "http://3.129.45.151:8081/Project2-1.0.0/login.app?email=" +
       userEmail +
       "&password=" +
       userPassword;

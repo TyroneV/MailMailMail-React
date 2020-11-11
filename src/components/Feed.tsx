@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFeed } from '../actions/actions';
 import { RootStore } from '../reducers';
 import { Post } from "./Post";
+import {PostInfo, LikeInfo} from '../states/states';
 
 
 //Id of the profile's user. if it's 0, then it's the home page feed so all posts should be shown. 
@@ -14,7 +15,7 @@ interface IProps {
 export const Feed: React.FC<IProps> = (props:IProps) =>{
  
     const dispatch = useDispatch();
-    const feedState = useSelector((state:RootStore) => state.posts)
+    const feedState = useSelector((state:RootStore) => state.feed)
     console.log(feedState);
     //this should run once to load the posts. 
     useEffect(() => {
@@ -27,9 +28,9 @@ export const Feed: React.FC<IProps> = (props:IProps) =>{
 
     return (
         <>
-        {feedState.posts && (
+        {feedState.postsAndLikes && (
             <div className="mb-5">
-                {feedState.posts.map((e:any, i:number) => {
+                {feedState.postsAndLikes.map((e:[PostInfo, LikeInfo[]], i:number) => {
                     return (<Post id={i} key={i}/>)
                 })}
             </div>

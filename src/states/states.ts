@@ -25,3 +25,11 @@ export interface PostInfo{
     authorId: number,
     dateCreated: Date
 }
+
+export interface LikeInfo{
+    id: number,
+    postId: number,
+    commentId: number,
+    authorId: number, 
+    dateCreated: Date
+}
