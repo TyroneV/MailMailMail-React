@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../reducers';
 import { getUsers } from '../actions/actions';
 
-
+interface itemType{
+    id:number
+    name:string,
+    
+}
 
 
 export const AutoCompleteBar: React.FC = () =>{
@@ -15,32 +19,45 @@ export const AutoCompleteBar: React.FC = () =>{
         dispatch(getUsers());
      }, [])
     const usersState = useSelector((state:RootStore) => state.users)
-    let items:string[] = [];
+    let items:itemType[] = [];
     const funct = () =>{
         usersState.users.forEach(function (user) {
-            items.push(`${user.firstName} ${user.lastName}`);
+            let x:itemType = {
+                id: user.id,
+                name: `${user.firstName} ${user.lastName}`
+            }
+            items.push(x);
         })
         return items;
     };
     funct();
     //const items = ["David", "Damien", "Sara", "Jane"];
-    const [suggestions, setSuggestions] = useState<string[]>([])
+    const [suggestions, setSuggestions] = useState<itemType[]>([])
     const [text, setText] = useState<string>("");
 
     const onTextChanged = (e:any) =>{
         const value = e.target.value;
-        let suggs: string[] = [];
+        let suggs: itemType[] = [];
         if(value.length >0){
             const regex = new RegExp(`^${value}`, 'i');
-            suggs = items.sort().filter(v=>regex.test(v));
+            suggs = items.sort((a,b) =>{
+                        if(a.name > b.name){
+                            return 1;
+                        } else if(a.name < b.name){
+                            return -1;
+                        }
+                        return 0;
+                     })
+            suggs = suggs.filter(v=>regex.test(v.name));
         }
         setSuggestions(suggs);
         setText(value);
     }
 
-    const suggestionSelected = (value:string)=>{
-        setText(value);
+    const suggestionSelected = (value:itemType)=>{
+        setText(value.name);
         setSuggestions([]);
+        
     }
 
     const renderSuggestions= () =>{
@@ -49,7 +66,7 @@ export const AutoCompleteBar: React.FC = () =>{
         }
         return(
             <ul>
-                {suggestions.map((item:string, i:number) => <li onClick={() => suggestionSelected(item)} key={i}>{item}</li>)}
+                {suggestions.map((item:itemType) => <li onClick={() => suggestionSelected(item)} key={item.id}>{item.name}</li>)}
             </ul>
         )
     }
@@ -57,7 +74,7 @@ export const AutoCompleteBar: React.FC = () =>{
     return (
         <>
             <div className="AutoCompleteText">
-                <input value = {text} onChange = {onTextChanged} type="text"/>
+                <input value = {text} onChange = {onTextChanged} type="text" placeholder="Search Users..."/>
                 {renderSuggestions()}
             </div>
         </>

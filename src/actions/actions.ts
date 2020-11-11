@@ -1,6 +1,8 @@
 
 import { UserState, UserInfo, PostInfo } from "../states/states";
 import axios from'axios';
+import { useSelector } from "react-redux";
+import { RootStore } from "../reducers";
 
 //const pref = "http://18.191.119.230:8081/Project2-1.0.0/";
 const pref ="http://localhost:8080/Project2/"
@@ -71,4 +73,21 @@ export const getUsers = () => async(dispatch:any) => {
         type: 'GETUSERS',
         payload:allUsers
     }) 
+}
+
+export const otherUser= (id:number) => async(dispatch:any) =>{
+    //let url =`${pref}userAll.app`
+    const usersState = useSelector((state:RootStore) => state.users)
+    let user;
+    let i;
+    for(i in usersState.users){
+          if(id === usersState.users[i].id){
+            user = usersState.users[i];
+            break;
+          }
+    }
+    dispatch({
+        type: 'OTHERUSER',
+        payload:user
+    })
 }
