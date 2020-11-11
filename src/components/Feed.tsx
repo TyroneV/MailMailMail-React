@@ -18,8 +18,12 @@ export const Feed: React.FC<IProps> = (props:IProps) =>{
     console.log(feedState);
     //this should run once to load the posts. 
     useEffect(() => {
-       dispatch(getFeed(0));
-    }, [])
+        if(props.id){
+            dispatch(getFeed(props.id));
+        } else{
+            dispatch(getFeed(0));
+        }
+    }, [dispatch, props.id])
 
     return (
         <>

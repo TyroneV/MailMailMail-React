@@ -75,9 +75,9 @@ export const getUsers = () => async(dispatch:any) => {
     }) 
 }
 
-export const otherUser= (id:number) => async(dispatch:any) =>{
-    //let url =`${pref}userAll.app`
-    const usersState = useSelector((state:RootStore) => state.users)
+export const otherUser= (id:number) => async(dispatch:any, getState:any) =>{
+    let state = getState();
+    const usersState = state.users;
     let user;
     let i;
     for(i in usersState.users){

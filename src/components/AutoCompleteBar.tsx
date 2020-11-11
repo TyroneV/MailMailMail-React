@@ -1,8 +1,9 @@
-import { UserInfo } from '../states/states';
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../reducers';
-import { getUsers } from '../actions/actions';
+import { getUsers, otherUser } from '../actions/actions';
+import { useHistory } from "react-router";
 
 interface itemType{
     id:number
@@ -13,8 +14,19 @@ interface itemType{
 
 export const AutoCompleteBar: React.FC = () =>{
 
+    const history = useHistory();
+    const [selected, setSelected] = useState(-1);
+    
 
+    
     const dispatch = useDispatch();
+   
+    useEffect(() =>{
+        if(selected != -1){
+            dispatch(otherUser(selected));
+        }
+    }, [selected])
+
     useEffect(() => {
         dispatch(getUsers());
      }, [])
@@ -54,11 +66,13 @@ export const AutoCompleteBar: React.FC = () =>{
         setText(value);
     }
 
-    const suggestionSelected = (value:itemType)=>{
+    function suggestionSelected (value:itemType):any {
         setText(value.name);
         setSuggestions([]);
-        
+        setSelected(value.id);
+        history.push("/other");
     }
+
 
     const renderSuggestions= () =>{
         if(suggestions.length ===0){
@@ -66,7 +80,7 @@ export const AutoCompleteBar: React.FC = () =>{
         }
         return(
             <ul>
-                {suggestions.map((item:itemType) => <li onClick={() => suggestionSelected(item)} key={item.id}>{item.name}</li>)}
+                {suggestions.map((item:itemType) => <li onClick={() =>suggestionSelected(item)} key={item.id}>{item.name}</li>)}
             </ul>
         )
     }
