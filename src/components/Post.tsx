@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   Button,
@@ -11,28 +11,63 @@ import {
 import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
 import { UserComment } from "./UserComment";
-import {PostInfo} from '../states/states';
+import {PostInfo, UserInfo} from '../states/states';
 
 //Refers to the post-id
 interface IProps{
   id:number
 }
 
+const initialState:UserInfo = {
+    id:0,
+    email:"",
+    password: "",
+    firstName: "",
+    lastName:"",
+    photo: ""
+}
 
 
 export const Post: React.FC<IProps> = (props:IProps) => {
   console.log("this is the props: " + props.id);
   const postState = useSelector((state:RootStore):PostInfo => state.posts.posts[props.id]);
-  // const usersState = useSelector((state:RootStore) => state.users);
+  const usersState = useSelector((state:RootStore) => state.users);
+
+  const [user, setUser] = useState<UserInfo>(initialState);
+
+  
+  
+  const findUser = () =>{
+    
+    let i:any;
+    for(i in usersState.users){
+      console.log("postState.authorId: " + postState.authorId);
+      console.log("usersState.users["+i+"].id: " + usersState.users[i].id);
+        if(postState.authorId === usersState.users[i].id){
+          setUser(usersState.users[i]);
+          
+          break;
+        }
+    }
+    // return(
+    //   <h1>Hello</h1>
+    // )
+  }
+
+  useEffect(()=>{
+   findUser();
+  }, [usersState])
+  
   return (
     <>
       <Card>
         <Card.Body>
           <Card.Title>
             <img src="/images/defaultImage.svg" width="50" />
-            <p className="m-2 d-inline">{postState.authorId}</p>
+            <p className="m-2 d-inline">{user.firstName} {user.lastName}</p>
+            {/* <p className="m-2 d-inline">{postState.authorId}</p> */}
           </Card.Title>
-          <Card.Img variant="top" src="/apost.jpg" />
+          <Card.Img variant="top" src="/images/apost.jpg" />
           <Card className="mb-4">
             <Container>
               <Row>

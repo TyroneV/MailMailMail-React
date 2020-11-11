@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Col, Container, Navbar, Row, Image } from "react-bootstrap";
 import { Redirect } from "react-router";
 import { EditProfile } from "./EditProfile";
 import { NavBar } from "./NavBar";
 import { Feed } from "./Feed";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../reducers";
+import {UserInfo} from "../states/states";
 
 
-export const Profile: React.FC = () => {
-  const user = useSelector((state: RootStore) => state.login);
+
+  
+const initialState:UserInfo = {
+    id:0,
+    email:"",
+    password: "",
+    firstName: "",
+    lastName:"",
+    photo: ""
+}
+
+export const OtherProfile: React.FC = () => {
+  const userString = sessionStorage.getItem("user");
+  const sessionUser = JSON.parse(userString||"");
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootStore) => state.otherUser);
+
+
+  
+
   return (
     !sessionStorage.getItem('user')?<Redirect to="/"/>:
     <>
@@ -30,7 +49,7 @@ export const Profile: React.FC = () => {
                     <Col sm={9}>
                       <div>
                         <Card.Title>
-                          {user.firstName} {user.lastName}
+                          {user.user.firstName} {user.user.lastName}
                         </Card.Title>
                         {/* <Card.Subtitle className="mb-2" id="birthdayCard">
                           Birthday
