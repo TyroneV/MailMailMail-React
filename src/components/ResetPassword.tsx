@@ -1,0 +1,82 @@
+import React from "react";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { useHistory } from "react-router";
+
+const axios = require("axios");
+
+export const ResetPassword: React.FC = () => {
+  const history = useHistory();
+
+  const submitReset = (event: any) => {
+    event.preventDefault();
+    const re = "/reset/pass/";
+    const email = window.location.pathname.replace(re, "");
+    const url =
+      "http://18.191.119.230:8081/Project2-1.0.0/userByEmail.app?email=";
+    const code = event.currentTarget[0];
+    let targetCode;
+    try {
+      const data = axios.get(url + email);
+      targetCode = data.data.password;
+      if (code === targetCode) {
+        if (event.currentTarget[1] === event.currentTarget[2]) {
+          const newUser = {
+            id: data.data.id,
+            password: event.currentTarget[1],
+          };
+          axios.put(
+            "http://18.191.119.230:8081/Project2-1.0.0/updateUser.app",
+            newUser
+          );
+          alert("New Password set!");
+          history.push("/");
+        } else {
+          alert("Password does not match!");
+        }
+      } else {
+        alert("Code does not match!");
+      }
+    } catch (error) {
+      alert("Invalid Email!");
+    }
+  };
+
+  return (
+    <>
+      <Container>
+        <Row>
+          <Col>
+            <Card>
+              <Card.Header className="blue">Password Reset</Card.Header>
+              <Card.Body>
+                <Form onSubmit={submitReset}>
+                  <Form.Group>
+                    <Form.Label>Enter your Reset Code</Form.Label>
+                    <Form.Control type="text" placeholder="Enter your code" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>New Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="New Password..."
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Confirm Password..."
+                    />
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
