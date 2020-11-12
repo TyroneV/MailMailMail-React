@@ -8,7 +8,7 @@ const url =
   configData.SERVER_URL + "/userByEmail.app?email=sneakykey@email.com";
 export const ImageUpload = (props) => {
   // ReactS3Client.uploadFile(file, newFileName).then(data => console.log(data).catch(err => console.error(err)));
-
+  console.log(props.path);
   const upload = async (e) => {
     let updateUser = JSON.parse(sessionStorage.getItem('user'));
     try {
@@ -17,7 +17,7 @@ export const ImageUpload = (props) => {
 
       const config = {
         bucketName: "mailmailmail-images",
-        dirName: "profileImages",
+        dirName: props.path,
         region: "us-east-2",
         accessKeyId: notakey.firstName,
         secretAccessKey: notakey.lastName,
@@ -25,6 +25,7 @@ export const ImageUpload = (props) => {
       
       const ReactS3Client = new S3(config);
       const newFileName = JSON.parse(sessionStorage.getItem('user')).id;
+    //   console.log(sessionStorage.getItem('user'));
      const data = await ReactS3Client.uploadFile(e.target.files[0], newFileName);
      console.log(data);
      updateUser.photo = data.key;
