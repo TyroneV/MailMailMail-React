@@ -2,7 +2,7 @@
 import { UserState, UserInfo, PostInfo, LikeInfo } from "../states/states";
 import axios from'axios';
 import configData from "../config.json";
-const pref = configData.SERVER_URL;
+const pref = configData.LOCALHOST_URL;
 
 /*
 * The actions

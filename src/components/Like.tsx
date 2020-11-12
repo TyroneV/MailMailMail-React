@@ -25,13 +25,14 @@ export const Like: React.FC<IProps> = (props: IProps) => {
         if (chosen) {
             if (!up) {
                 dispatch(deleteLike(like))
-                setNum(num-1);
+                if(num !== 0) {
+                    setNum(num-1);
+                    setChosen(false)
+                }
             } else {
                 dispatch(makeLike(props.post));
                 setNum(num+1);
-            }
-            if(num <0) {
-                setNum(0);
+                setChosen(false);
             }
         }
     }, [dispatch, props.post,chosen,up, like, num]);
