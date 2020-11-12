@@ -2,8 +2,7 @@
 import { UserState, UserInfo, PostInfo, LikeInfo } from "../states/states";
 import axios from'axios';
 import configData from "../config.json";
-//const pref = configData.SERVER_URL;
-const pref ="http://localhost:8080/Project2/"
+const pref = configData.LOCALHOST_URL;
 
 /*
 * The actions
@@ -50,11 +49,11 @@ export const getFeed = (id:number) => async (dispatch:any) =>{
     let posturl = "";
     let likeurl = "";
     if(id === 0){
-        posturl = `${pref}postAll.app`
-        likeurl = `${pref}likeAll.app`
+        posturl = `${pref}/postAll.app`
+        likeurl = `${pref}/likeAll.app`
     } else{
-        posturl = `${pref}postAUser.app?id=${id}`
-        likeurl = `${pref}likeAll.app`
+        posturl = `${pref}/postAUser.app?id=${id}`
+        likeurl = `${pref}/likeAll.app`
     }
     try{
         //getting the posts and the likes. 
@@ -71,7 +70,7 @@ export const getFeed = (id:number) => async (dispatch:any) =>{
         for(x in posts){
             let likeList:LikeInfo[] = [];
             for(y in likes){
-                if(posts[x].id === likes[y].postId){
+                if(posts[x].id === likes[y].post){
                     likeList.push(likes[y])
                 }
             }
@@ -90,7 +89,7 @@ export const getFeed = (id:number) => async (dispatch:any) =>{
 
 export const getUsers = () => async(dispatch:any) => {
     
-    let url =`${pref}userAll.app`
+    let url =`${pref}/userAll.app`
     const res = await axios.get(url);
     const allUsers: UserInfo[] = await res.data;
     dispatch({
@@ -116,7 +115,23 @@ export const otherUser= (id:number) => async(dispatch:any, getState:any) =>{
     })
 }
 
-// export const makeLike = (like:any) => async (dispatch:any, getState:any) =>{
-//     let url = `${pref}`;
+export const makeLike = (post:PostInfo) => async (dispatch:any, getState:any) =>{
+    let url = `${pref}/insertLike.app`;
+    const state = getState();
+    const currUser = state.login;
 
-// }
+    let like = {
+        id:0,
+        post:post.id,
+        commentId:0,
+        authorId:currUser.id,
+        dateCreated: null,
+    }
+
+    await axios.post(url, like);
+}
+
+export const deleteLike = (like:any)=> async() =>{
+    let url = `${pref}/deleteLike.app`;
+    await axios.post(url, like);
+}
