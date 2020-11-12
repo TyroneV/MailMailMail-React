@@ -30,6 +30,6 @@ export interface LikeInfo{
     id: number,
     commentId: number,
     authorId: number, 
-    dateCreated: Date
+    dateCreated: any,
     post: number,
 }

@@ -27,9 +27,6 @@ export const CreatePost: React.FC = () => {
       authorId: user.id,
       datecreated: null,
     };
-    if (!newPost.photo) {
-      newPost.photo = "https://www.mailpile.is/img/icon-512x512.png";
-    }
     try {
       const a = await axios.post(
         configData.SERVER_URL + "/postSave.app",
@@ -50,9 +47,9 @@ export const CreatePost: React.FC = () => {
               <Col lg={2}>
                 <Image
                   className="mb-2 mr-2"
-                  src={user.photo}
+                  src={configData.S3_URL +user.photo}
                   width="150"
-                  rounded
+                  roundedCircle
                 />
               </Col>
               <Col>

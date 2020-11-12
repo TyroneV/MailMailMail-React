@@ -47,8 +47,8 @@ export const Login: React.FC = () => {
   };
 
   async function loginUser(userEmail: string, userPassword: string) {
-    const url =
-    configData.SERVER_URL +"/login.app?email=" +
+    const url =configData.SERVER_URL+
+      "/login.app?email=" +
       userEmail +
       "&password=" +
       userPassword;
