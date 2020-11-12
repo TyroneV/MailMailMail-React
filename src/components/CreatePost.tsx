@@ -33,8 +33,8 @@ export const CreatePost: React.FC = () => {
     try {
       // const a = await axios.get(configData.SERVER_URL+"/postAll.app");
       // console.log(a.data);
-     const a =  await axios.post(
-        configData.SERVER_URL+"/postSave.app",
+      const a = await axios.post(
+        configData.SERVER_URL + "/postSave.app",
         newPost
       );
       console.log(a.data);
@@ -62,29 +62,38 @@ export const CreatePost: React.FC = () => {
                   {user.firstName} {user.lastName}
                 </h5>
                 <Form onSubmit={submitPost}>
-                  <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      placeholder="Write post here..."
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Container>
-                      <Row>
-                        <Col>
-                          <Form.File id="formcheck-api-regular">
-                            <Form.File.Input />
-                          </Form.File>
-                        </Col>
-                        <Col>
-                          <Button type="submit" className="blue float-right">
-                            Create Post
+                  <Container>
+                    <Row>
+                      <Col>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control
+                            as="textarea"
+                            rows={3}
+                            placeholder="Write post here..."
+                          />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Container fluid>
+                        <Row>
+                          <Form.Group className="w-100">
+                            <Col>
+                              <Form.File id="formcheck-api-regular">
+                                <Form.File.Input />
+                              </Form.File>
+                            </Col>
+                            <Col>
+                              <Button type="submit" className="blue">
+                                Create Post
                           </Button>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Form.Group>
+                            </Col>
+                          </Form.Group>
+
+                        </Row>
+                      </Container>
+                    </Row>
+                  </Container>
                 </Form>
               </Col>
             </Row>

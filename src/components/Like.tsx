@@ -18,18 +18,21 @@ export const Like: React.FC<IProps> = (props: IProps) => {
     const [like, setlike] = useState<any>();
     const [chosen, setChosen] = useState(false);
     const [up, setUp] = useState(false);
+    // const [num, setNum] = useState(0);
 
 
     useEffect(() => {
         if (chosen) {
             if (!up) {
-                dispatch(deleteLike(like))
-                setUp(false);
-
+                //dispatch(deleteLike(like))
+                // setNum(num-1);
             } else {
-                dispatch(makeLike(props.post));
-
+                //dispatch(makeLike(props.post));
+                // setNum(num+1);
             }
+            // if(num <0) {
+            //     setNum(0);
+            // }
         }
     }, [up]);
 
@@ -37,6 +40,7 @@ export const Like: React.FC<IProps> = (props: IProps) => {
         if (up) {
             console.log("a");
             e.currentTarget.src = "/images/thumbsUP.svg";
+            console.log("the value: " + e.currentTarget.value);
             setUp(false)
             setChosen(true);
         } else {
@@ -62,7 +66,7 @@ export const Like: React.FC<IProps> = (props: IProps) => {
                         width="30"
                         className="d-inline"
                         alt="Like button"
-
+                        onClick={handleLike}
                     />)
                 }
             }
@@ -74,7 +78,7 @@ export const Like: React.FC<IProps> = (props: IProps) => {
                 width="30"
                 className="d-inline"
                 alt="Like button"
-
+                onClick={handleLike}
             />)
 
         }
