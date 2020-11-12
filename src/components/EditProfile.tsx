@@ -94,7 +94,7 @@ export const EditProfile: React.FC = (props: any) => {
                         width="150"
                         rounded
                       />
-              <ImageUpload ></ImageUpload>
+              <ImageUpload path="profileImages"></ImageUpload>
             </Form.Group>
             <Button className="blue" type="submit">
             Save
