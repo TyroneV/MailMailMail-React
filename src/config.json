@@ -1,3 +1,8 @@
 {
+<<<<<<< HEAD
     "SERVER_URL": "http://localhost:8080/Project2"
+=======
+    "SERVER_URL": "http://3.129.45.151:8081/Project2-1.0.0",
+    "LOCALHOST_URL" : "http://localhost:8080/Project2"
+>>>>>>> 6bcfca3eb34515d6ed5faf317c578af8de7954e5
 }

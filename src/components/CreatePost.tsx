@@ -25,14 +25,14 @@ export const CreatePost: React.FC = () => {
       content: form[0].value,
       photo: form[1].value,
       authorId: user.id,
-      datecreated: null
+      datecreated: null,
     };
     if (!newPost.photo) {
       newPost.photo = "https://www.mailpile.is/img/icon-512x512.png";
     }
     try {
-     const a =  await axios.post(
-        configData.SERVER_URL+"/postSave.app",
+      const a = await axios.post(
+        configData.SERVER_URL + "/postSave.app",
         newPost
       );
       console.log(a.data);
@@ -60,29 +60,29 @@ export const CreatePost: React.FC = () => {
                   {user.firstName} {user.lastName}
                 </h5>
                 <Form onSubmit={submitPost}>
-                  <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      placeholder="Write post here..."
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Container>
-                      <Row>
-                        <Col>
-                          <Form.File id="formcheck-api-regular">
-                            <Form.File.Input />
-                          </Form.File>
-                        </Col>
-                        <Col>
-                          <Button type="submit" className="blue float-right">
-                            Create Post
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Form.Group>
+                  <Container>
+                    <Row>
+                      <Col>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control
+                            as="textarea"
+                            rows={3}
+                            placeholder="Write post here..."
+                          />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Form.Group className="w-100">
+                        <Form.File className="mb-3" id="formcheck-api-regular">
+                          <Form.File.Input />
+                        </Form.File>
+                        <Button type="submit" className="blue">
+                          Create Post
+                        </Button>
+                      </Form.Group>
+                    </Row>
+                  </Container>
                 </Form>
               </Col>
             </Row>
