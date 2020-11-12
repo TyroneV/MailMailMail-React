@@ -25,15 +25,19 @@ export const CreatePost: React.FC = () => {
       content: form[0].value,
       photo: form[1].value,
       authorId: user.id,
+      datecreated: null
     };
     if (!newPost.photo) {
       newPost.photo = "https://www.mailpile.is/img/icon-512x512.png";
     }
     try {
-      await axios.put(
+      // const a = await axios.get(configData.SERVER_URL+"/postAll.app");
+      // console.log(a.data);
+     const a =  await axios.post(
         configData.SERVER_URL+"/postSave.app",
         newPost
       );
+      console.log(a.data);
     } catch (error) {
       console.log(error);
     }
