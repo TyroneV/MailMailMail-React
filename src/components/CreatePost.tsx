@@ -49,7 +49,7 @@ export const CreatePost: React.FC = () => {
                   className="mb-2 mr-2"
                   src={configData.S3_URL +user.photo}
                   width="150"
-                  rounded
+                  roundedCircle
                 />
               </Col>
               <Col>

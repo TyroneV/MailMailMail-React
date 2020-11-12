@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Modal, Image } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import S3 from "react-aws-s3";
 import configData from "../config.json";
 
@@ -25,24 +25,16 @@ export const ImageUpload = (props) => {
       
       const ReactS3Client = new S3(config);
       const newFileName = JSON.parse(sessionStorage.getItem('user')).id;
-    //   console.log(sessionStorage.getItem('user'));
-
      const data = await ReactS3Client.uploadFile(e.target.files[0], newFileName);
      console.log(data);
      updateUser.photo = data.key;
-     await axios.put("http://3.129.45.151:8081/Project2-1.0.0" + "/updateUser.app", updateUser);
+     await axios.put(configData.SERVER_URL + "/updateUser.app", updateUser);
 
     } catch (error) {
       console.log("====================================");
       console.log(error);
       console.log("====================================");
     }
-    // console.log(updateUser);
-    // const newSess = JSON.stringify(updateUser);
-    // sessionStorage.removeItem('user');
-
-    // sessionStorage.setItem('user', newSess);
-
   };
 
   return (

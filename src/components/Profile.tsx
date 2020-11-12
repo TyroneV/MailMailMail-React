@@ -25,7 +25,7 @@ export const Profile: React.FC = () => {
                 <Container className="margin-20">
                   <Row>
                     <Col sm={3}>
-                      <Image src={configData.S3_URL +user.photo} width="150" rounded />
+                      <Image src={configData.S3_URL +user.photo} height="150" width="150" roundedCircle/>
                     </Col>
                     <Col sm={9}>
                       <div>
