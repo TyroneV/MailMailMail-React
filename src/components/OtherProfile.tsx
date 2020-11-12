@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
 
 
-
 export const OtherProfile: React.FC = () => {
 const user = useSelector((state: RootStore) => state.otherUser);
 
@@ -29,7 +28,7 @@ const user = useSelector((state: RootStore) => state.otherUser);
                   <Container className="margin-20">
                     <Row>
                       <Col sm={3}>
-                        <Image src="/images/defaultImage.svg" width="150" rounded />
+                        <Image src={"https://mailmailmail-images.s3.us-east-2.amazonaws.com/"+user.user.photo} width="150" rounded />
                       </Col>
                       <Col sm={9}>
                         <div>

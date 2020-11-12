@@ -69,11 +69,11 @@ export const Login: React.FC = () => {
     <>
       <Container className="fill border white width">
         <Row>
-          <Col
+          <Col 
             className="mt-5 overflow-hidden"
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <img src={"/images/longTitle.svg"} width="1000" />
+            <img src={"/images/longTitle.svg"} width="1000"/>
           </Col>
         </Row>
         <Row className="mt-5">
