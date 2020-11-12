@@ -56,7 +56,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
       <Card className="mt-5">
         <Card.Body>
           <Card.Title>
-            <img src={user.photo} width="50"/>
+            <img src={configData.S3_URL + user.photo} width="50"/>
             <p className="m-2 d-inline">{user && user.firstName} {user && user.lastName}</p>
           </Card.Title>
           <Card.Img variant="top" src={configData + postState[0].photo} />
