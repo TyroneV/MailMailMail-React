@@ -1,8 +1,8 @@
 
 import { UserState, UserInfo, PostInfo, LikeInfo } from "../states/states";
 import axios from'axios';
-
-//const pref = "http://3.129.45.151:8081/Project2-1.0.0/";
+import configData from "../config.json";
+//const pref = configData.SERVER_URL;
 const pref ="http://localhost:8080/Project2/"
 
 /*

@@ -7,6 +7,7 @@ import { RootStore } from "../reducers";
 import { UserState } from "../states/states";
 import { ForgotPass } from "./ForgotPass";
 import { Register } from "./Register";
+import configData from "../config.json";
 
 const axios = require("axios");
 
@@ -47,7 +48,7 @@ export const Login: React.FC = () => {
 
   async function loginUser(userEmail: string, userPassword: string) {
     const url =
-      "http://3.129.45.151:8081/Project2-1.0.0/login.app?email=" +
+    configData.SERVER_URL +"/login.app?email=" +
       userEmail +
       "&password=" +
       userPassword;

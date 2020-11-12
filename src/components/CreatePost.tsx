@@ -12,10 +12,32 @@ import { useSelector } from "react-redux";
 
 import { RootStore } from "../reducers";
 
+const axios = require("axios");
 
 export const CreatePost: React.FC = () => {
   const user = useSelector((state: RootStore) => state.login);
 
+  const submitPost = async (event: any) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    console.log(form);
+    const newPost = {
+      content: form[0].value,
+      photo: form[1].value,
+      authorId: user.id,
+    };
+    if (!newPost.photo) {
+      newPost.photo = "https://www.mailpile.is/img/icon-512x512.png";
+    }
+    try {
+      await axios.put(
+        "http://3.129.45.151:8081/Project2-1.0.0/postSave.app",
+        newPost
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -35,7 +57,7 @@ export const CreatePost: React.FC = () => {
                 <h5>
                   {user.firstName} {user.lastName}
                 </h5>
-                <Form>
+                <Form onSubmit={submitPost}>
                   <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Control
                       as="textarea"
@@ -52,7 +74,7 @@ export const CreatePost: React.FC = () => {
                           </Form.File>
                         </Col>
                         <Col>
-                          <Button className="blue float-right">
+                          <Button type="submit" className="blue float-right">
                             Create Post
                           </Button>
                         </Col>
