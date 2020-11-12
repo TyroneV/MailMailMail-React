@@ -7,6 +7,7 @@ import { RootStore } from "../reducers";
 import { UserState } from "../states/states";
 import { ForgotPass } from "./ForgotPass";
 import { Register } from "./Register";
+import configData from "../config.json";
 
 const axios = require("axios");
 
@@ -47,7 +48,7 @@ export const Login: React.FC = () => {
 
   async function loginUser(userEmail: string, userPassword: string) {
     const url =
-      "http://18.191.119.230:8081/Project2-1.0.0/login.app?email=" +
+    configData.SERVER_URL +"/login.app?email=" +
       userEmail +
       "&password=" +
       userPassword;
@@ -69,13 +70,13 @@ export const Login: React.FC = () => {
       <Container className="fill border white width">
         <Row>
           <Col
-            className="margin-50"
+            className="mt-5 overflow-hidden"
             style={{ display: "flex", justifyContent: "center" }}
           >
             <img src={"/images/longTitle.svg"} width="1000" />
           </Col>
         </Row>
-        <Row className="margin-50">
+        <Row className="mt-5">
           <Col md={{ span: 6, offset: 3 }}>
             <Card>
               <Card.Header as="h5" className="blue">
