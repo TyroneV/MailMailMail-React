@@ -62,6 +62,9 @@ export const getFeed = (id: number) => async (dispatch: any) => {
             feed.push([posts[x], likeList]);
         }
 
+        //flip feed to show from newest to oldest
+        feed.reverse();
+
         dispatch({
             type: 'GETFEED',
             payload: feed

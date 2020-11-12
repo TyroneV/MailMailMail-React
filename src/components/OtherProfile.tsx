@@ -41,7 +41,7 @@ const user = useSelector((state: RootStore) => state.otherUser);
                         <Card.Subtitle className="mb-2" id="jobCard">
                           Job Title
                         </Card.Subtitle> */}
-                          <EditProfile />
+                          
                         </div>
                       </Col>
                     </Row>
