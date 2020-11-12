@@ -1,5 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<App /> renders the component 1`] = `
+<Fragment>
+  <BrowserRouter
+    basename="/"
+  >
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        path="/home"
+      />
+      <Route
+        component={[Function]}
+        path="/me"
+      />
+      <Route
+        component={[Function]}
+        path="/reset/pass"
+      />
+    </Switch>
+  </BrowserRouter>
+</Fragment>
+`;
+
 exports[`renders the component 1`] = `
 <Fragment>
   <BrowserRouter
