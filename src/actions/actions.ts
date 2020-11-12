@@ -71,7 +71,7 @@ export const getFeed = (id:number) => async (dispatch:any) =>{
         for(x in posts){
             let likeList:LikeInfo[] = [];
             for(y in likes){
-                if(posts[x].id === likes[y].postId){
+                if(posts[x].id === likes[y].post){
                     likeList.push(likes[y])
                 }
             }
@@ -116,7 +116,23 @@ export const otherUser= (id:number) => async(dispatch:any, getState:any) =>{
     })
 }
 
-// export const makeLike = (like:any) => async (dispatch:any, getState:any) =>{
-//     let url = `${pref}`;
+export const makeLike = (post:PostInfo) => async (dispatch:any, getState:any) =>{
+    let url = `${pref}insertLike.app`;
+    const state = getState();
+    const currUser = state.login;
 
-// }
+    let like = {
+        id:0,
+        post:post.id,
+        commentId:0,
+        authorId:currUser.id,
+        dateCreated: null,
+    }
+
+    await axios.post(url, like);
+}
+
+export const deleteLike = (like:any)=> async() =>{
+    let url = `${pref}deleteLike.app`;
+    await axios.post(url, like);
+}
