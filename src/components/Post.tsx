@@ -25,7 +25,7 @@ const initialState:UserInfo = {
     password: "",
     firstName: "not",
     lastName:"loaded",
-    photo: ""
+    photo: "/images/defaultImage.svg"
 }
 
 
@@ -56,7 +56,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
       <Card className="mt-5">
         <Card.Body>
           <Card.Title>
-            <img src="/images/defaultImage.svg" width="50"  alt="profile"/>
+            <img src={user.photo} width="50"/>
             <p className="m-2 d-inline">{user && user.firstName} {user && user.lastName}</p>
           </Card.Title>
           <Card.Img variant="top" src={postState[0].photo} />
