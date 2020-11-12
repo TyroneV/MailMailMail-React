@@ -17,8 +17,6 @@ export const AutoCompleteBar: React.FC = () =>{
     const history = useHistory();
     const [selected, setSelected] = useState(-1);
     
-
-    
     const dispatch = useDispatch();
    
     useEffect(() =>{

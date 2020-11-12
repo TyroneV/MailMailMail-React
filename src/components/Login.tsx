@@ -70,13 +70,13 @@ export const Login: React.FC = () => {
       <Container className="fill border white width">
         <Row>
           <Col
-            className="margin-50"
+            className="mt-5 overflow-hidden"
             style={{ display: "flex", justifyContent: "center" }}
           >
             <img src={"/images/longTitle.svg"} width="1000" />
           </Col>
         </Row>
-        <Row className="margin-50">
+        <Row className="mt-5">
           <Col md={{ span: 6, offset: 3 }}>
             <Card>
               <Card.Header as="h5" className="blue">

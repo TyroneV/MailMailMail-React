@@ -25,14 +25,12 @@ export const CreatePost: React.FC = () => {
       content: form[0].value,
       photo: form[1].value,
       authorId: user.id,
-      datecreated: null
+      datecreated: null,
     };
     if (!newPost.photo) {
       newPost.photo = "https://www.mailpile.is/img/icon-512x512.png";
     }
     try {
-      // const a = await axios.get(configData.SERVER_URL+"/postAll.app");
-      // console.log(a.data);
       const a = await axios.post(
         configData.SERVER_URL + "/postSave.app",
         newPost
@@ -75,23 +73,14 @@ export const CreatePost: React.FC = () => {
                       </Col>
                     </Row>
                     <Row>
-                      <Container fluid>
-                        <Row>
-                          <Form.Group className="w-100">
-                            <Col>
-                              <Form.File id="formcheck-api-regular">
-                                <Form.File.Input />
-                              </Form.File>
-                            </Col>
-                            <Col>
-                              <Button type="submit" className="blue">
-                                Create Post
-                          </Button>
-                            </Col>
-                          </Form.Group>
-
-                        </Row>
-                      </Container>
+                      <Form.Group className="w-100">
+                        <Form.File className="mb-3" id="formcheck-api-regular">
+                          <Form.File.Input />
+                        </Form.File>
+                        <Button type="submit" className="blue">
+                          Create Post
+                        </Button>
+                      </Form.Group>
                     </Row>
                   </Container>
                 </Form>
