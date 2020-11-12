@@ -13,7 +13,7 @@ import { RootStore } from "../reducers";
 import { UserComment } from "./UserComment";
 import {PostInfo, UserInfo, LikeInfo} from '../states/states';
 import { Like } from "./Like";
-
+import configData from "../config.json";
 //Refers to the post-id
 interface IProps{
   id:number
@@ -59,7 +59,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
             <img src={user.photo} width="50"/>
             <p className="m-2 d-inline">{user && user.firstName} {user && user.lastName}</p>
           </Card.Title>
-          <Card.Img variant="top" src={postState[0].photo} />
+          <Card.Img variant="top" src={configData + postState[0].photo} />
           <Card className="mb-4">
             <Container>
               <Row>
