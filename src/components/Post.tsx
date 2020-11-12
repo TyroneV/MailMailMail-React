@@ -68,7 +68,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
             <p className="m-2 d-inline">{user.firstName} {user.lastName}</p>
             {/* <p className="m-2 d-inline">{postState.authorId}</p> */}
           </Card.Title>
-          <Card.Img variant="top" src="/images/apost.jpg" />
+          <Card.Img variant="top" src={postState[0].photo} />
           <Card className="mb-4">
             <Container>
               <Row>
