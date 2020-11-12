@@ -61,7 +61,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
   
   return (
     <>
-      <Card>
+      <Card className="mt-5">
         <Card.Body>
           <Card.Title>
             <img src="/images/defaultImage.svg" width="50"  alt="profile"/>
