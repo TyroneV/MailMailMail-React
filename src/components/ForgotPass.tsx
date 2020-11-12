@@ -13,7 +13,7 @@ export const ForgotPass: React.FC = () => {
     event.preventDefault();
     try {
       const url =
-        "http://3.129.45.151:8081/Project2-1.0.0/forgotPass?email=" +
+        "http://3.129.45.151:8081/Project2-1.0.0/forgotPass.app?email=" +
         event.currentTarget[0].value;
       axios.post(url);
       alert("Password reset instruction is sent to your email!");

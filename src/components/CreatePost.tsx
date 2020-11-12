@@ -11,6 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import configData from "../config.json";
 import { RootStore } from "../reducers";
+import postImage from "./postImage";
 
 const axios = require("axios");
 
@@ -20,10 +21,10 @@ export const CreatePost: React.FC = () => {
   const submitPost = async (event: any) => {
     event.preventDefault();
     const form = event.currentTarget;
-    console.log(form);
+    const newPic = await postImage(form[1].files[0]);
     const newPost = {
       content: form[0].value,
-      photo: form[1].value,
+      photo: newPic,
       authorId: user.id,
       datecreated: null,
     };
