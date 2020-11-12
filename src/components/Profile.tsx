@@ -6,7 +6,7 @@ import { NavBar } from "./NavBar";
 import { Feed } from "./Feed";
 import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
-
+import configData from "../config.json";
 
 export const Profile: React.FC = () => {
   const user = useSelector((state: RootStore) => state.login);
@@ -25,7 +25,7 @@ export const Profile: React.FC = () => {
                 <Container className="margin-20">
                   <Row>
                     <Col sm={3}>
-                      <Image src="/images/defaultImage.svg" width="150" rounded />
+                      <Image src={configData.S3_URL +user.photo} width="150" rounded />
                     </Col>
                     <Col sm={9}>
                       <div>
