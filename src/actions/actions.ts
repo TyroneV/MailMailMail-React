@@ -76,8 +76,7 @@ export const getUsers = () => async(dispatch:any) => {
     let url =`${pref}/userAll.app`
     const res = await axios.get(url);
     const allUsers: UserInfo[] = await res.data;
-    let i;
-    
+
     dispatch({
         type: 'GETUSERS',
         payload:allUsers
