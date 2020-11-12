@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../reducers';
 import { getUsers, otherUser } from '../actions/actions';
 import { useHistory } from "react-router";
+import { UserInfo } from '../states/states';
 
 interface itemType {
     id: number
@@ -33,7 +34,13 @@ export const AutoCompleteBar: React.FC = () => {
     const usersState = useSelector((state: RootStore) => state.users)
     let items: itemType[] = [];
     const funct = () => {
-        usersState.users.forEach(function (user) {
+
+        function isRealUser(element:UserInfo, index:number, array:any) {
+            return (element.id !== 23 && element.id !== 15);
+        } 
+        const filtUsers: UserInfo[] = usersState.users.filter(isRealUser);
+
+        filtUsers.forEach(function (user) {
             let x: itemType = {
                 id: user.id,
                 name: `${user.firstName} ${user.lastName}`
@@ -42,8 +49,9 @@ export const AutoCompleteBar: React.FC = () => {
         })
         return items;
     };
+
+    //maybe move funct into a useEffect with a dependency on usersState. 
     funct();
-    //const items = ["David", "Damien", "Sara", "Jane"];
     const [suggestions, setSuggestions] = useState<itemType[]>([])
     const [text, setText] = useState<string>("");
 
@@ -52,7 +60,8 @@ export const AutoCompleteBar: React.FC = () => {
         let suggs: itemType[] = [];
         if (value.length > 0) {
             const regex = new RegExp(`^${value}`, 'i');
-            suggs = items.sort((a, b) => {
+            suggs = items;
+            suggs.sort((a, b) => {
                 if (a.name > b.name) {
                     return 1;
                 } else if (a.name < b.name) {
