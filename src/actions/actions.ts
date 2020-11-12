@@ -8,7 +8,6 @@ const pref = configData.SERVER_URL;
 * The actions
 */
 export type LoginAction = {type: 'LOG_IN',payload: UserState};
-export type searchAction = {type: 'SEARCH', payload: UserInfo}; //change payload to UserInfo
 export type getPostAction = {type: 'GETFEED', payload: PostInfo[]};
 
 /*
@@ -21,22 +20,7 @@ export const onLogin = (user:UserState):LoginAction => (
     }
 )
 
-export const getSearch = (name: string):searchAction  =>{
-    //const res = await: 
-    const profile:UserInfo={
-        id:0,
-        email:"enoch@bomb.com",
-        password:"asdddfff",
-        photo: "this is a photo",
-        firstName: name,
-        lastName: "cho",
-    }
-    return({
-        type: 'SEARCH',
-        payload: profile
-    })
 
-}
 
 /**
  * This will pull the posts and likes, and figure out the authors as well. 

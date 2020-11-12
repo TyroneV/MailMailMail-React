@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, Modal, Image} from "react-bootstrap";
 
 export const EditProfile: React.FC = (props: any) => {
@@ -12,18 +12,12 @@ export const EditProfile: React.FC = (props: any) => {
 //   const [fname, setFname] = useState(props.fname);
 //   const [lname, setLname] = useState(props.lname);
 //   const [photo, setPhoto] = useState(props.photo);
-  const [password, setPassword] = useState("wasspord");
-  const [fname, setFname] = useState("Enoch");
-  const [lname, setLname] = useState("Cho");
-  const [photo, setPhoto] = useState("/images/defaultImage.svg");
-  const [changed, setChanged] = useState(true);
-  useEffect( ()=> {
-      console.log("password: " + password);
-      console.log("fname: " + fname);
-      console.log("lname: " + lname);
-      console.log("photo: " + photo);
-      //dispatch(someaction);
-  }, [changed])
+const [password, setPassword] = useState("wasspord");
+const [fname, setFname] = useState("Enoch");
+const [lname, setLname] = useState("Cho");
+const [photo, setPhoto] = useState("/images/defaultImage.svg");
+const [changed, setChanged] = useState(true);
+
 
   const submit = (event:any) => {
       setShow(false);

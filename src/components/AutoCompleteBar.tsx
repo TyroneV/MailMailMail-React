@@ -20,14 +20,15 @@ export const AutoCompleteBar: React.FC = () =>{
     const dispatch = useDispatch();
    
     useEffect(() =>{
-        if(selected != -1){
+        if(selected !== -1){
             dispatch(otherUser(selected));
         }
-    }, [selected])
+    }, [dispatch, selected])
 
     useEffect(() => {
         dispatch(getUsers());
-     }, [])
+     }, [dispatch])
+     
     const usersState = useSelector((state:RootStore) => state.users)
     let items:itemType[] = [];
     const funct = () =>{

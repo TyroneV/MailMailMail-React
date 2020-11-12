@@ -23,14 +23,13 @@ const initialState:UserInfo = {
     id:0,
     email:"",
     password: "",
-    firstName: "",
-    lastName:"",
-    photo: ""
+    firstName: "not",
+    lastName:"loaded",
+    photo: "/images/defaultImage.svg"
 }
 
 
 export const Post: React.FC<IProps> = (props:IProps) => {
-  console.log("this is the props: " + props.id);
   const postState = useSelector((state:RootStore):[PostInfo, LikeInfo[]]=> state.feed.postsAndLikes[props.id]);
   const usersState = useSelector((state:RootStore) => state.users);
 
@@ -38,35 +37,27 @@ export const Post: React.FC<IProps> = (props:IProps) => {
 
   
   
-  const findUser = () =>{
-    
-    let i:any;
-    for(i in usersState.users){
-      console.log("postState.authorId: " + postState[0].authorId);
-      console.log("usersState.users["+i+"].id: " + usersState.users[i].id);
-        if(postState[0].authorId === usersState.users[i].id){
-          setUser(usersState.users[i]);
-          
-          break;
-        }
-    }
-    // return(
-    //   <h1>Hello</h1>
-    // )
-  }
-
+  
   useEffect(()=>{
+    const findUser = () =>{
+      let i:any;
+      for(i in usersState.users){
+          if(postState[0].authorId === usersState.users[i].id){
+            setUser(usersState.users[i]);
+            break;
+          }
+      }
+    }
    findUser();
-  }, [usersState])
+  }, [postState,usersState])
   
   return (
     <>
       <Card className="mt-5">
         <Card.Body>
           <Card.Title>
-            <img src="/images/defaultImage.svg" width="50"  alt="profile"/>
-            <p className="m-2 d-inline">{user.firstName} {user.lastName}</p>
-            {/* <p className="m-2 d-inline">{postState.authorId}</p> */}
+            <img src={user.photo} width="50"/>
+            <p className="m-2 d-inline">{user && user.firstName} {user && user.lastName}</p>
           </Card.Title>
           <Card.Img variant="top" src={postState[0].photo} />
           <Card className="mb-4">

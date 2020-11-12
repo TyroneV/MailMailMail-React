@@ -18,33 +18,31 @@ export const Like: React.FC<IProps> = (props: IProps) => {
     const [like, setlike] = useState<any>();
     const [chosen, setChosen] = useState(false);
     const [up, setUp] = useState(false);
-    // const [num, setNum] = useState(0);
+    const [num, setNum] = useState(0);
 
 
     useEffect(() => {
         if (chosen) {
             if (!up) {
-                //dispatch(deleteLike(like))
-                // setNum(num-1);
+                dispatch(deleteLike(like))
+                setNum(num-1);
             } else {
-                //dispatch(makeLike(props.post));
-                // setNum(num+1);
+                dispatch(makeLike(props.post));
+                setNum(num+1);
             }
-            // if(num <0) {
-            //     setNum(0);
-            // }
+            if(num <0) {
+                setNum(0);
+            }
         }
-    }, [up]);
+    }, [dispatch, props.post,chosen,up, like, num]);
+
 
     const handleLike = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
         if (up) {
-            console.log("a");
             e.currentTarget.src = "/images/thumbsUP.svg";
-            console.log("the value: " + e.currentTarget.value);
             setUp(false)
             setChosen(true);
         } else {
-            console.log("b");
             e.currentTarget.src = "/images/thumbsUP_active.svg";
             setUp(true);
             setChosen(true);
@@ -58,7 +56,6 @@ export const Like: React.FC<IProps> = (props: IProps) => {
             for (i in props.like) {
                 if (props.like[i].authorId === currUser.id) {
                     setlike(props.like[i]);
-                    console.log("in the likeButton");
                     setUp(true);
                     return (<input
                         type="image"
@@ -94,12 +91,21 @@ export const Like: React.FC<IProps> = (props: IProps) => {
         )
     }
 
+    function likeCount () {
+        if(num !== props.like.length && !chosen){
+            setNum(props.like.length);
+        }
+        return(            
+            <h6 className="m-2 d-inline">{num}</h6>
+        )
+    }
+
 
 
     return (
         <>
             {likeButton()}
-            <h6 className="m-2 d-inline">{props.like.length}</h6>
+            {likeCount()}
         </>
     )
 

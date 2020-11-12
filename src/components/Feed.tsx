@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFeed } from '../actions/actions';
 import { RootStore } from '../reducers';
@@ -16,15 +16,12 @@ export const Feed: React.FC<IProps> = (props:IProps) =>{
  
     const dispatch = useDispatch();
     const feedState = useSelector((state:RootStore) => state.feed)
-    console.log(feedState);
     //this should run once to load the posts. 
     useEffect(() => {
-        if(props.id){
-            dispatch(getFeed(props.id));
-        } else{
-            dispatch(getFeed(0));
-        }
+        props.id?dispatch(getFeed(0)):dispatch(getFeed(0));
     }, [dispatch, props.id])
+
+    
 
     return (
         <>

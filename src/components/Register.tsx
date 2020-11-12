@@ -18,7 +18,7 @@ export const Register: React.FC = (props: any) => {
         password:form[1].value,
         firstName:form[3].value,
         lastName:form[4].value,
-        photo:''
+        photo:'/images/defaultImage.svg'
     }
     submitUserDb(user);
   }else{
