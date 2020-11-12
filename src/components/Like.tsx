@@ -34,7 +34,7 @@ export const Like: React.FC<IProps> = (props: IProps) => {
                 setNum(0);
             }
         }
-    }, [up]);
+    }, [dispatch, props.post,chosen,up, like, num]);
 
 
     const handleLike = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
@@ -92,7 +92,7 @@ export const Like: React.FC<IProps> = (props: IProps) => {
     }
 
     function likeCount () {
-        if(num != props.like.length && !chosen){
+        if(num !== props.like.length && !chosen){
             setNum(props.like.length);
         }
         return(            

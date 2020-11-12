@@ -77,7 +77,7 @@ export const CreatePost: React.FC = () => {
                         <Form.File className="mb-3" id="formcheck-api-regular">
                           <Form.File.Input />
                         </Form.File>
-                        <Button type="submit" className="blue">
+                        <Button type="submit" className="blue float-right">
                           Create Post
                         </Button>
                       </Form.Group>

@@ -23,8 +23,8 @@ const initialState:UserInfo = {
     id:0,
     email:"",
     password: "",
-    firstName: "",
-    lastName:"",
+    firstName: "not",
+    lastName:"loaded",
     photo: ""
 }
 
@@ -37,24 +37,19 @@ export const Post: React.FC<IProps> = (props:IProps) => {
 
   
   
-  const findUser = () =>{
-    
-    let i:any;
-    for(i in usersState.users){
-        if(postState[0].authorId === usersState.users[i].id){
-          setUser(usersState.users[i]);
-          
-          break;
-        }
-    }
-    // return(
-    //   <h1>Hello</h1>
-    // )
-  }
-
+  
   useEffect(()=>{
+    const findUser = () =>{
+      let i:any;
+      for(i in usersState.users){
+          if(postState[0].authorId === usersState.users[i].id){
+            setUser(usersState.users[i]);
+            break;
+          }
+      }
+    }
    findUser();
-  }, [usersState])
+  }, [postState,usersState])
   
   return (
     <>
@@ -62,8 +57,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
         <Card.Body>
           <Card.Title>
             <img src="/images/defaultImage.svg" width="50"  alt="profile"/>
-            <p className="m-2 d-inline">{user.firstName} {user.lastName}</p>
-            {/* <p className="m-2 d-inline">{postState.authorId}</p> */}
+            <p className="m-2 d-inline">{user && user.firstName} {user && user.lastName}</p>
           </Card.Title>
           <Card.Img variant="top" src={postState[0].photo} />
           <Card className="mb-4">
