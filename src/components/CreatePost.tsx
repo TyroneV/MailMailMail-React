@@ -31,8 +31,6 @@ export const CreatePost: React.FC = () => {
       newPost.photo = "https://www.mailpile.is/img/icon-512x512.png";
     }
     try {
-      // const a = await axios.get(configData.SERVER_URL+"/postAll.app");
-      // console.log(a.data);
      const a =  await axios.post(
         configData.SERVER_URL+"/postSave.app",
         newPost
