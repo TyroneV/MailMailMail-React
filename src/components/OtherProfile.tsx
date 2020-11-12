@@ -10,7 +10,10 @@ import { RootStore } from "../reducers";
 
 
 export const OtherProfile: React.FC = () => {
-  const user = useSelector((state: RootStore) => state.otherUser);
+const user = useSelector((state: RootStore) => state.otherUser);
+
+
+
   return (
     !sessionStorage.getItem('user') ? <Redirect to="/" /> :
       <>
