@@ -50,7 +50,7 @@ export const CreatePost: React.FC = () => {
               <Col lg={2}>
                 <Image
                   className="mb-2 mr-2"
-                  src="images/defaultImage.svg"
+                  src={user.photo}
                   width="150"
                   rounded
                 />
