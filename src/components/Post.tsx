@@ -30,7 +30,6 @@ const initialState:UserInfo = {
 
 
 export const Post: React.FC<IProps> = (props:IProps) => {
-  console.log("this is the props: " + props.id);
   const postState = useSelector((state:RootStore):[PostInfo, LikeInfo[]]=> state.feed.postsAndLikes[props.id]);
   const usersState = useSelector((state:RootStore) => state.users);
 
@@ -42,8 +41,6 @@ export const Post: React.FC<IProps> = (props:IProps) => {
     
     let i:any;
     for(i in usersState.users){
-      console.log("postState.authorId: " + postState[0].authorId);
-      console.log("usersState.users["+i+"].id: " + usersState.users[i].id);
         if(postState[0].authorId === usersState.users[i].id){
           setUser(usersState.users[i]);
           
