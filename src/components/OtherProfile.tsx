@@ -48,15 +48,8 @@ const user = useSelector((state: RootStore) => state.otherUser);
                   </Container>
                   <Navbar className="blue" variant="dark">
                     <Navbar.Brand className="mr-auto" href="#home">
-                      Posts
+                    {user.user.firstName}'s Posts
                   </Navbar.Brand>
-                    <Navbar.Brand className="mr-auto" href="#home">
-                      Photos
-                  </Navbar.Brand>
-                    <Navbar.Brand className="mr-auto" href="#home">
-                      About
-                  </Navbar.Brand>
-                    <Navbar.Brand href="#home">Friends</Navbar.Brand>
                   </Navbar>
                   {/* Posts here */}
                   <Feed id={user.user.id} />
