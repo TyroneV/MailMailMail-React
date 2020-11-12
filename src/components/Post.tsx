@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   Button,
@@ -11,44 +11,65 @@ import {
 import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
 import { UserComment } from "./UserComment";
-import {PostInfo} from '../states/states';
+import {PostInfo, UserInfo, LikeInfo} from '../states/states';
+import { Like } from "./Like";
 
 //Refers to the post-id
 interface IProps{
   id:number
 }
 
+const initialState:UserInfo = {
+    id:0,
+    email:"",
+    password: "",
+    firstName: "not",
+    lastName:"loaded",
+    photo: "/images/defaultImage.svg"
+}
 
 
 export const Post: React.FC<IProps> = (props:IProps) => {
-  console.log("this is the props: " + props.id);
-  const postState = useSelector((state:RootStore):PostInfo => state.posts.posts[props.id]);
-  // const usersState = useSelector((state:RootStore) => state.users);
+  const postState = useSelector((state:RootStore):[PostInfo, LikeInfo[]]=> state.feed.postsAndLikes[props.id]);
+  const usersState = useSelector((state:RootStore) => state.users);
+
+  const [user, setUser] = useState<UserInfo>(initialState);
+
+  
+  
+  
+  useEffect(()=>{
+    const findUser = () =>{
+      let i:any;
+      for(i in usersState.users){
+          if(postState[0].authorId === usersState.users[i].id){
+            setUser(usersState.users[i]);
+            break;
+          }
+      }
+    }
+   findUser();
+  }, [postState,usersState])
+  
   return (
     <>
-      <Card>
+      <Card className="mt-5">
         <Card.Body>
           <Card.Title>
-            <img src="/images/defaultImage.svg" width="50" />
-            <p className="m-2 d-inline">{postState.authorId}</p>
+            <img src={user.photo} width="50"/>
+            <p className="m-2 d-inline">{user && user.firstName} {user && user.lastName}</p>
           </Card.Title>
-          <Card.Img variant="top" src="/apost.jpg" />
+          <Card.Img variant="top" src={postState[0].photo} />
           <Card className="mb-4">
             <Container>
               <Row>
                 <Col className="m-4">
-                  <Card.Text>{postState.content}</Card.Text>
+                  <Card.Text>{ postState[0] && postState[0].content}</Card.Text>
                 </Col>
               </Row>
               <Row className="mb-4">
                 <Col>
-                  <input
-                    type="image"
-                    src="/images/thumbsUP.svg"
-                    width="30"
-                    className="d-inline"
-                  />
-                  <h6 className="m-2 d-inline">100</h6>
+                  <Like post = {postState[0]} like = {postState[1]}/>
                 </Col>
               </Row>
             </Container>

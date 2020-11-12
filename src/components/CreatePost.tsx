@@ -8,10 +8,38 @@ import {
   Button,
   Image,
 } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import configData from "../config.json";
+import { RootStore } from "../reducers";
+
+const axios = require("axios");
 
 export const CreatePost: React.FC = () => {
-  const userString = sessionStorage.getItem("user");
-  const user = JSON.parse(userString || "");
+  const user = useSelector((state: RootStore) => state.login);
+
+  const submitPost = async (event: any) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    console.log(form);
+    const newPost = {
+      content: form[0].value,
+      photo: form[1].value,
+      authorId: user.id,
+      datecreated: null,
+    };
+    if (!newPost.photo) {
+      newPost.photo = "https://www.mailpile.is/img/icon-512x512.png";
+    }
+    try {
+      const a = await axios.post(
+        configData.SERVER_URL + "/postSave.app",
+        newPost
+      );
+      console.log(a.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -22,7 +50,7 @@ export const CreatePost: React.FC = () => {
               <Col lg={2}>
                 <Image
                   className="mb-2 mr-2"
-                  src="images/defaultImage.svg"
+                  src={user.photo}
                   width="150"
                   rounded
                 />
@@ -31,30 +59,30 @@ export const CreatePost: React.FC = () => {
                 <h5>
                   {user.firstName} {user.lastName}
                 </h5>
-                <Form>
-                  <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      placeholder="Write post here..."
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Container>
-                      <Row>
-                        <Col>
-                          <Form.File id="formcheck-api-regular">
-                            <Form.File.Input />
-                          </Form.File>
-                        </Col>
-                        <Col>
-                          <Button className="blue float-right">
-                            Create Post
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Form.Group>
+                <Form onSubmit={submitPost}>
+                  <Container>
+                    <Row>
+                      <Col>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control
+                            as="textarea"
+                            rows={3}
+                            placeholder="Write post here..."
+                          />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Form.Group className="w-100">
+                        <Form.File className="mb-3" id="formcheck-api-regular">
+                          <Form.File.Input />
+                        </Form.File>
+                        <Button type="submit" className="blue float-right">
+                          Create Post
+                        </Button>
+                      </Form.Group>
+                    </Row>
+                  </Container>
                 </Form>
               </Col>
             </Row>

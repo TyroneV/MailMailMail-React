@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-
+import configData from "../config.json";
 const axios = require('axios');
 
 export const Register: React.FC = (props: any) => {
-
-  // if(sessionStorage.getItem("user")){
-  //   window.location.href = "./home";
-  // }
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -22,7 +18,7 @@ export const Register: React.FC = (props: any) => {
         password:form[1].value,
         firstName:form[3].value,
         lastName:form[4].value,
-        photo:''
+        photo:'/images/defaultImage.svg'
     }
     submitUserDb(user);
   }else{
@@ -32,7 +28,7 @@ export const Register: React.FC = (props: any) => {
 
   const submitUserDb = async (user:any) =>{
     try {
-    const result = await axios.post('http://18.191.119.230:8081/Project2-1.0.0/createUser.app', user);
+    const result = await axios.post(configData.SERVER_URL +'/createUser.app', user);
     console.log(result.data);
       alert("SUCCESSFULLY CREATED USER!");
     }catch(error){
@@ -79,14 +75,6 @@ export const Register: React.FC = (props: any) => {
               <Form.Label>Last Name</Form.Label>
               <Form.Control type="text" placeholder="Enter Last Name" required/>
             </Form.Group>
-            {/* <Form.Group controlId="formDate">
-              <Form.Label>Date of Birth</Form.Label>
-              <Form.Control type="date" required/>
-            </Form.Group >
-            <Form.Group controlId="formJobTitle">
-              <Form.Label>Job Title</Form.Label>
-              <Form.Control type="text" placeholder="Enter Job Title" />
-            </Form.Group> */}
             <Button className="blue" type="submit">
             Submit
           </Button>

@@ -1,7 +1,7 @@
-import {PostInfo} from '../states/states';
+import {PostInfo, LikeInfo} from '../states/states';
 
 interface IFeedState {
-    posts: PostInfo[]
+    postsAndLikes: [[PostInfo,LikeInfo[]]]
 }
 
 // const initialState: IFeedState ={    
@@ -14,16 +14,31 @@ interface IFeedState {
 //     }],
 // }
 
+const emptyPost:PostInfo = {
+            id: 0,
+            content: "",
+            photo:"",
+            authorId: 0,
+            dateCreated: new Date()
+}
+
+// const emptyLike:LikeInfo = {
+//     id: 0,
+//     postId: 0,
+//     commentId: 0,
+//     authorId: 0, 
+//     dateCreated: new Date()
+// }
+
 const initialState: IFeedState ={    
-    posts : []
+    postsAndLikes : [[emptyPost,[]]]
 }
 
 const feedReducer = (state:IFeedState = initialState, action: any): IFeedState =>{
     switch(action.type){
         case 'GETFEED':
-            console.log("in the reducer");
             return {
-                posts:action.payload
+                postsAndLikes:action.payload
             }
         default:
             return state;

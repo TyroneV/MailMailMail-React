@@ -1,30 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, Modal, Image} from "react-bootstrap";
-import { useDispatch } from "react-redux";
 
 export const EditProfile: React.FC = (props: any) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const dispatch = useDispatch();
+
 
 //   const [password, setPassword] = useState(props.password);
 //   const [fname, setFname] = useState(props.fname);
 //   const [lname, setLname] = useState(props.lname);
 //   const [photo, setPhoto] = useState(props.photo);
-  const [password, setPassword] = useState("wasspord");
-  const [fname, setFname] = useState("Enoch");
-  const [lname, setLname] = useState("Cho");
-  const [photo, setPhoto] = useState("/defaultImage.svg");
-  const [changed, setChanged] = useState(true);
-  useEffect( ()=> {
-      console.log("password: " + password);
-      console.log("fname: " + fname);
-      console.log("lname: " + lname);
-      console.log("photo: " + photo);
-      //dispatch(someaction);
-  }, [changed])
+const [password, setPassword] = useState("wasspord");
+const [fname, setFname] = useState("Enoch");
+const [lname, setLname] = useState("Cho");
+const [photo, setPhoto] = useState("/images/defaultImage.svg");
+const [changed, setChanged] = useState(true);
+
 
   const submit = (event:any) => {
       setShow(false);

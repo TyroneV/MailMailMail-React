@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { SearchBar } from "./SearchBar";
 import {
   Navbar,
   Collapse,
@@ -11,6 +10,7 @@ import {
 import {Image} from "react-bootstrap";
 import { SideBar } from "./SideBar";
 import { useHistory } from "react-router";
+import { AutoCompleteBar } from "./AutoCompleteBar";
 
 export const NavBar: React.FC = () => {
   const history = useHistory();
@@ -30,7 +30,8 @@ export const NavBar: React.FC = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem className="mr-4">
-              <SearchBar />
+              {/* <SearchBar /> */}
+              <AutoCompleteBar/>
             </NavItem>
             <NavItem>
               <NavbarBrand

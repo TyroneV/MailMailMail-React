@@ -4,10 +4,12 @@ import { Redirect } from "react-router";
 import { EditProfile } from "./EditProfile";
 import { NavBar } from "./NavBar";
 import { Feed } from "./Feed";
+import { useSelector } from "react-redux";
+import { RootStore } from "../reducers";
+
 
 export const Profile: React.FC = () => {
-  const userString = sessionStorage.getItem("user");
-  const user = JSON.parse(userString||"");
+  const user = useSelector((state: RootStore) => state.login);
   return (
     !sessionStorage.getItem('user')?<Redirect to="/"/>:
     <>
@@ -30,12 +32,7 @@ export const Profile: React.FC = () => {
                         <Card.Title>
                           {user.firstName} {user.lastName}
                         </Card.Title>
-                        {/* <Card.Subtitle className="mb-2" id="birthdayCard">
-                          Birthday
-                        </Card.Subtitle>
-                        <Card.Subtitle className="mb-2" id="jobCard">
-                          Job Title
-                        </Card.Subtitle> */}
+      
                         <EditProfile />
                       </div>
                     </Col>
@@ -54,7 +51,7 @@ export const Profile: React.FC = () => {
                   <Navbar.Brand href="#home">Friends</Navbar.Brand>
                 </Navbar>
                 {/* Posts here */}
-                <Feed/>
+                <Feed id={user.id}/>
               </Card.Body>
             </Card>
           </Col>
