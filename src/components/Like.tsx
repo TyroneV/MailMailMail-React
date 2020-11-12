@@ -11,7 +11,7 @@ interface IProps {
 
 export const Like: React.FC<IProps> = (props: IProps) => {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const currUser: UserState = useSelector((state: RootStore) => state.login);
 
@@ -23,10 +23,11 @@ export const Like: React.FC<IProps> = (props: IProps) => {
     useEffect(() => {
         if (chosen) {
             if (!up) {
-                //dispatch(deleteLike(like))
+                dispatch(deleteLike(like))
+                setUp(false);
 
             } else {
-                // dispatch(makeLike(props.post));
+                dispatch(makeLike(props.post));
 
             }
         }
