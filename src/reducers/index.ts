@@ -11,7 +11,7 @@ import otherUserReducer from './otherUserReducer';
 export const allReducers = combineReducers({
     login : loginReducer,
     search: searchReducer,
-    posts: feedReducer,
+    feed: feedReducer,
     users: allUsersReducer,
     otherUser: otherUserReducer,
 });

@@ -1,11 +1,8 @@
 
-import { UserState, UserInfo, PostInfo } from "../states/states";
+import { UserState, UserInfo, PostInfo, LikeInfo } from "../states/states";
 import axios from'axios';
-import { useSelector } from "react-redux";
-import { RootStore } from "../reducers";
-
-const pref = "http://18.191.119.230:8081/Project2-1.0.0/";
-//const pref ="http://localhost:8080/Project2/"
+import configData from "../config.json";
+const pref = configData.SERVER_URL;
 
 /*
 * The actions
@@ -41,22 +38,48 @@ export const getSearch = (name: string):searchAction  =>{
 
 }
 
-
+/**
+ * This will pull the posts and likes, and figure out the authors as well. 
+ * @param id 
+ * Gets the id of the user's feed. If it's zero, its the home page so it 
+ * pulls all the posts. 
+ */
 export const getFeed = (id:number) => async (dispatch:any) =>{
-    let url = "";
+    //setting the url, based on whether its the home page feed or a user profile's feed. 
+    let posturl = "";
+    let likeurl = "";
     if(id === 0){
-        url = `${pref}postAll.app`
+        posturl = `${pref}/postAll.app`
+        likeurl = `${pref}/likeAll.app`
     } else{
-        url = `${pref}postAUser.app?id=${id}`
+        posturl = `${pref}/postAUser.app?id=${id}`
+        likeurl = `${pref}/likeAll.app`
     }
     try{
+        //getting the posts and the likes. 
+        let postres = await axios.get(posturl)
+        const posts: PostInfo[] = await postres.data;
+        let likeres = await axios.get(likeurl);
+        const likes: LikeInfo[] = await likeres.data;
 
-        const res = await axios.get(url)
-        const posts: PostInfo[] = await res.data;
-        //console.log("This is the posts" + posts[1].content);
+        //making an array of posts with a list of likes for that post. 
+        let feed:any = [];
+        let x;
+        let y;
+        //for each post, go through the likes ,and if the post id matches then put them together. 
+        for(x in posts){
+            let likeList:LikeInfo[] = [];
+            for(y in likes){
+                if(posts[x].id === likes[y].post){
+                    likeList.push(likes[y])
+                }
+            }
+            feed.push([posts[x], likeList]);
+        }
+
         dispatch({
             type: 'GETFEED',
-            payload:posts
+            payload:feed
         })
     } catch (error){
         console.log(error.message)
@@ -66,7 +89,7 @@ export const getFeed = (id:number) => async (dispatch:any) =>{
 
 export const getUsers = () => async(dispatch:any) => {
     
-    let url =`${pref}userAll.app`
+    let url =`${pref}/userAll.app`
     const res = await axios.get(url);
     const allUsers: UserInfo[] = await res.data;
     dispatch({
@@ -75,9 +98,9 @@ export const getUsers = () => async(dispatch:any) => {
     }) 
 }
 
-export const otherUser= (id:number) => async(dispatch:any) =>{
-    //let url =`${pref}userAll.app`
-    const usersState = useSelector((state:RootStore) => state.users)
+export const otherUser= (id:number) => async(dispatch:any, getState:any) =>{
+    let state = getState();
+    const usersState = state.users;
     let user;
     let i;
     for(i in usersState.users){
@@ -90,4 +113,25 @@ export const otherUser= (id:number) => async(dispatch:any) =>{
         type: 'OTHERUSER',
         payload:user
     })
+}
+
+export const makeLike = (post:PostInfo) => async (dispatch:any, getState:any) =>{
+    let url = `${pref}/insertLike.app`;
+    const state = getState();
+    const currUser = state.login;
+
+    let like = {
+        id:0,
+        post:post.id,
+        commentId:0,
+        authorId:currUser.id,
+        dateCreated: null,
+    }
+
+    await axios.post(url, like);
+}
+
+export const deleteLike = (like:any)=> async() =>{
+    let url = `${pref}/deleteLike.app`;
+    await axios.post(url, like);
 }

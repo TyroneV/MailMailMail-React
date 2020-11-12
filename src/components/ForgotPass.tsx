@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import configData from "../config.json";
 
 const axios = require("axios");
 
@@ -12,7 +13,7 @@ export const ForgotPass: React.FC = () => {
     event.preventDefault();
     try {
       const url =
-        "http://18.191.119.230:8081/Project2-1.0.0/forgotPass?email=" +
+      configData.SERVER_URL +"/forgotPass?email=" +
         event.currentTarget[0].value;
       axios.post(url);
       alert("Password reset instruction is sent to your email!");

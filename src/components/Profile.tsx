@@ -51,7 +51,7 @@ export const Profile: React.FC = () => {
                   <Navbar.Brand href="#home">Friends</Navbar.Brand>
                 </Navbar>
                 {/* Posts here */}
-                <Feed/>
+                <Feed id={user.id}/>
               </Card.Body>
             </Card>
           </Col>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-
+import configData from "../config.json";
 const axios = require('axios');
 
 export const Register: React.FC = (props: any) => {
@@ -28,7 +28,7 @@ export const Register: React.FC = (props: any) => {
 
   const submitUserDb = async (user:any) =>{
     try {
-    const result = await axios.post('http://18.191.119.230:8081/Project2-1.0.0/createUser.app', user);
+    const result = await axios.post(configData.SERVER_URL +'/createUser.app', user);
     console.log(result.data);
       alert("SUCCESSFULLY CREATED USER!");
     }catch(error){
