@@ -50,7 +50,7 @@ export const CreatePost: React.FC = () => {
               <Col lg={2}>
                 <Image
                   className="mb-2 mr-2"
-                  src="images/defaultImage.svg"
+                  src={user.photo}
                   width="150"
                   rounded
                 />
@@ -77,7 +77,7 @@ export const CreatePost: React.FC = () => {
                         <Form.File className="mb-3" id="formcheck-api-regular">
                           <Form.File.Input />
                         </Form.File>
-                        <Button type="submit" className="blue">
+                        <Button type="submit" className="blue float-right">
                           Create Post
                         </Button>
                       </Form.Group>

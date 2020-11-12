@@ -37,7 +37,6 @@ const initialState: IFeedState ={
 const feedReducer = (state:IFeedState = initialState, action: any): IFeedState =>{
     switch(action.type){
         case 'GETFEED':
-            console.log("in the feed reducer");
             return {
                 postsAndLikes:action.payload
             }
