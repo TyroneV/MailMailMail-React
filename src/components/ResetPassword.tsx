@@ -33,7 +33,7 @@ export const ResetPassword: React.FC = () => {
           } catch (error) {
             alert("Failed to update!");
           }
-          history.push("/");
+          //history.push("/");
         } else {
           alert("Password does not match!");
         }

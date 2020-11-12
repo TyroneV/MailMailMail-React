@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
-
+import configData from "../config.json";
 import { RootStore } from "../reducers";
 
 const axios = require("axios");
@@ -31,7 +31,7 @@ export const CreatePost: React.FC = () => {
     }
     try {
       await axios.put(
-        "http://3.129.45.151:8081/Project2-1.0.0/postSave.app",
+        configData.SERVER_URL+"/postSave.app",
         newPost
       );
     } catch (error) {
