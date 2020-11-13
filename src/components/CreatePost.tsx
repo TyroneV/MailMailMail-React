@@ -21,7 +21,10 @@ export const CreatePost: React.FC = () => {
   const submitPost = async (event: any) => {
     event.preventDefault();
     const form = event.currentTarget;
-    const newPic = await postImage(form[1].files[0]);
+    let newPic;
+    if(form[1].files[0]){
+    newPic = await postImage(form[1].files[0]);
+     }
     const newPost = {
       content: form[0].value,
       photo: newPic,
