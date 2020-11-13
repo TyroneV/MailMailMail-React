@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, Modal, Image } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../reducers";
 import configData from "../config.json";
 import ImageUpload from "../jsfunction/ImageUpload";
+import { UserState } from "../states/states";
+import { onLogin } from "../actions/actions";
 
 export const EditProfile: React.FC = (props: any) => {
   const axios = require("axios");
@@ -12,7 +14,10 @@ export const EditProfile: React.FC = (props: any) => {
   const handleShow = () => setShow(true);
 
   const user = useSelector((state: RootStore) => state.login);
-
+  const dispatch = useDispatch();
+  const setUser = (u: UserState) => {
+    dispatch(onLogin(u));
+  };
   const submit = async (event: any) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -36,9 +41,10 @@ export const EditProfile: React.FC = (props: any) => {
           console.log(form[3].files);
           const data = await ImageUpload(form[3]);
           user.photo = data.key;
-          alert('Image updated!')
         }
-      await axios.put(configData.SERVER_URL + "/updateUser.app", user);
+        await axios.put(configData.SERVER_URL + "/updateUser.app", user);
+        sessionStorage.setItem('user',JSON.stringify(user));
+        setUser(user);
         alert('User Updated!');
       }catch(error){
         alert('UPDATE FAILED!');

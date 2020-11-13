@@ -6,7 +6,6 @@ const axios = require("axios");
 const url =
   configData.SERVER_URL + "/userByEmail.app?email=sneakykey@email.com";
 export const ImageUpload = async (e) => {
-  // let updateUser = JSON.parse(sessionStorage.getItem('user'));
   try {
     const response = await axios.get(url);
     const notakey = await response.data;
@@ -23,10 +22,6 @@ export const ImageUpload = async (e) => {
     const newFileName = JSON.parse(sessionStorage.getItem('user')).id;
    const data = await ReactS3Client.uploadFile(e.files[0], newFileName);
    return data;
-  //  console.log(data);
-  //  updateUser.photo = data.key;
-
-  //  await axios.put(configData.SERVER_URL + "/updateUser.app", updateUser);
 
   } catch (error) {
     console.log("====================================");
