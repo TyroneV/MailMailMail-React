@@ -127,8 +127,8 @@ export const makeLike = (post: PostInfo) => async (dispatch: any, getState: any)
         dateCreated: null,
     }
 
-    await axios.post(url, like).then(
-        same ? dispatch(getFeed(id)) : dispatch(getFeed(0)));
+    axios.post(url, like).then((response) =>{
+        same ? dispatch(getFeed(id)) : dispatch(getFeed(0))});
 }
 
 export const deleteLike = (like: LikeInfo) => async (dispatch: any, getState: any) => {
