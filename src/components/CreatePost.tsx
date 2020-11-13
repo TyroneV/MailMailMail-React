@@ -34,8 +34,10 @@ export const CreatePost: React.FC = () => {
         newPost
       );
       console.log(a.data);
+      alert('Posted!');
     } catch (error) {
       console.log(error);
+      alert('Posting Failed!');
     }
   };
 
@@ -49,6 +51,7 @@ export const CreatePost: React.FC = () => {
                 <Image
                   className="mb-2 mr-2"
                   src={configData.S3_URL +user.photo}
+                  height="150"
                   width="150"
                   roundedCircle
                 />
