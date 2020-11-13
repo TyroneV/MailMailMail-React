@@ -18,7 +18,7 @@ export const NavBar: React.FC = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <div className="sticky-nav">
       <Navbar color="dark" dark expand="md">
           <Image
             src="/images/longTitle.svg"
