@@ -24,7 +24,7 @@ const user = useSelector((state: RootStore) => state.otherUser);
             >
               <Card style={{ width: "60rem" }}>
                 <Card.Body>
-                  <Container className="margin-20">
+                  <Container className="m-4">
                     <Row>
                       <Col sm={3}>
                         <Image src={configData.S3_URL+user.user.photo} height="150" width="150" roundedCircle/>

@@ -38,6 +38,7 @@ export const CreatePost: React.FC = () => {
       );
       console.log(a.data);
       alert('Posted!');
+      window.location.href="/";
     } catch (error) {
       console.log(error);
       alert('Posting Failed!');
