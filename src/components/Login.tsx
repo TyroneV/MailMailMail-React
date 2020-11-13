@@ -102,7 +102,7 @@ export const Login: React.FC = () => {
                 <Container>
                   <Row>
                     <Col
-                      className="margin-20"
+                      className="m-5"
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <ForgotPass/>
