@@ -24,9 +24,6 @@ export const ImageUpload = async (e) => {
    return data;
 
   } catch (error) {
-    console.log("====================================");
-    console.log(error);
-    console.log("====================================");
   }
 };
 

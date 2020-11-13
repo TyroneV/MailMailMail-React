@@ -39,7 +39,6 @@ export const EditProfile: React.FC = (props: any) => {
     ) {
       try{
         if (form[3].files.length) {
-          console.log(form[3].files);
           const data = await ImageUpload(form[3]);
           user.photo = data.key;
         }

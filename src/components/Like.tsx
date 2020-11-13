@@ -18,14 +18,12 @@ export const Like: React.FC<IProps> = (props: IProps) => {
     const [like, setlike] = useState<any>();
     const [chosen, setChosen] = useState(false);
     const [up, setUp] = useState(false);
-    //const [num, setNum] = useState(0);
 
 
     useEffect(() => {
         if (chosen) {
             if (!up) {
-                console.log("This is the like to be deleted: ");
-                console.log(like);
+                
                 dispatch(deleteLike(like))
                 setChosen(false);
             } else {
@@ -41,19 +39,13 @@ export const Like: React.FC<IProps> = (props: IProps) => {
             e.currentTarget.src = "/images/thumbsUP.svg";
             setUp(false)
             setChosen(true);
-            // if(num !== 0) {
-            //     console.log("before: " + num);
-            //     console.log("-1");
-            //     setNum(num-1);
-            // }
+           
 
         } else {
             e.currentTarget.src = "/images/thumbsUP_active.svg";
             setUp(true);
             setChosen(true);
-            // console.log("before: " + num);
-            // console.log("+1");
-            // setNum(num+1);
+            
 
         }
     }
@@ -64,8 +56,7 @@ export const Like: React.FC<IProps> = (props: IProps) => {
             for (i in props.like) {
                 if (props.like[i].authorId === currUser.id) {
                     setlike(props.like[i]);
-                    console.log("This is the like from the db:");
-                    console.log(props.like[i]);
+                    
                     setUp(true);
                     return (<input
                         type="image"
@@ -102,10 +93,7 @@ export const Like: React.FC<IProps> = (props: IProps) => {
     }
 
     function likeCount () {
-        // if(num !== props.like.length && !chosen){
-        //     console.log("runs");
-        //     setNum(props.like.length);
-        // }
+       
         return(            
             <h6 className="m-2 d-inline">{props.like.length}</h6>
         )

@@ -24,10 +24,8 @@ export const postImage = async (file) => {
       const max = 10000000;
       const newFileName = Math.trunc(min + Math.random() * (max - min));
 
-      console.log(newFileName);
       const data = await ReactS3Client.uploadFile(file, newFileName);
 
-      console.log(data);
       return data.key;
 };
 

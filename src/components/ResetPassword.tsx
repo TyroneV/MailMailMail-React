@@ -23,7 +23,6 @@ export const ResetPassword: React.FC = () => {
       if (code === targetCode) {
         if (pass1 === pass2) {
           newUser.password = pass2;
-          console.log(newUser);
           try {
             await axios.put(
               configData.SERVER_URL +"/updateUser.app",
@@ -42,7 +41,6 @@ export const ResetPassword: React.FC = () => {
         alert("Code does not match!");
       }
     } catch (error) {
-      console.log(error);
       alert("Invalid Email!");
     }
   };
