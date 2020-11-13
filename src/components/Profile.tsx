@@ -15,6 +15,7 @@ export const Profile: React.FC = () => {
     <>
       <NavBar />
       <Container>
+        <p></p>
         <Row>
           <Col
             className="mt-5"
@@ -22,7 +23,7 @@ export const Profile: React.FC = () => {
           >
             <Card style={{ width: "60rem" }}>
               <Card.Body>
-                <Container className="margin-20">
+                <Container className="m-4">
                   <Row>
                     <Col sm={3}>
                       <Image src={configData.S3_URL +user.photo} height="150" width="150" roundedCircle/>
@@ -32,7 +33,7 @@ export const Profile: React.FC = () => {
                         <Card.Title>
                           {user.firstName} {user.lastName}
                         </Card.Title>
-      
+
                         <EditProfile />
                       </div>
                     </Col>

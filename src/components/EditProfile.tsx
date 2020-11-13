@@ -15,6 +15,7 @@ export const EditProfile: React.FC = (props: any) => {
 
   const user = useSelector((state: RootStore) => state.login);
   const dispatch = useDispatch();
+  
   const setUser = (u: UserState) => {
     dispatch(onLogin(u));
   };
@@ -45,7 +46,9 @@ export const EditProfile: React.FC = (props: any) => {
         await axios.put(configData.SERVER_URL + "/updateUser.app", user);
         sessionStorage.setItem('user',JSON.stringify(user));
         setUser(user);
+        handleClose();
         alert('User Updated!');
+        window.location.href="/";
       }catch(error){
         alert('UPDATE FAILED!');
       }
