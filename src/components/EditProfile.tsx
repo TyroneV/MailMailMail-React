@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Button, Form, Modal, Image} from "react-bootstrap";
-import { ImageUpload } from "./ImageUpload";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { Button, Form, Modal, Image } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../reducers";
-import Axios from "axios";
-
-
+import configData from "../config.json";
+import ImageUpload from "../jsfunction/ImageUpload";
+import { UserState } from "../states/states";
+import { onLogin } from "../actions/actions";
 
 export const EditProfile: React.FC = (props: any) => {
   const axios = require("axios");
@@ -14,49 +14,44 @@ export const EditProfile: React.FC = (props: any) => {
   const handleShow = () => setShow(true);
 
   const user = useSelector((state: RootStore) => state.login);
-  // let tester = sessionStorage.getItem('user');
-  // JSON.parse(tester);
-//   const [password, setPassword] = useState(props.password);
-//   const [fname, setFname] = useState(props.fname);
-//   const [lname, setLname] = useState(props.lname);
-//   const [photo, setPhoto] = useState(props.photo);
-  const [password, setPassword] = useState("wasspord");
-  const [fname, setFname] = useState("Enoch");
-  const [lname, setLname] = useState("Cho");
-  const [photo, setPhoto] = useState("https://mailmailmail-images.s3.us-east-2.amazonaws.com/"+user.photo);
-  const [changed, setChanged] = useState(true);
-
-  useEffect( ()=> {
-      console.log("password: " + password);
-      console.log("fname: " + fname);
-      console.log("lname: " + lname);
-      console.log("photo: " + photo);
-      //dispatch(someaction);
-  }, [changed])
-
-  const submit = async (event:any) => {
-      setShow(false);
-      event.preventDefault();
-      const form = event.currentTarget;
-      if(form[0].value.trim()){
-          setPassword(form[0].value.trim());
-          user.password = form[0].value.trim();
+  const dispatch = useDispatch();
+  const setUser = (u: UserState) => {
+    dispatch(onLogin(u));
+  };
+  const submit = async (event: any) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form[0].value.trim()) {
+      user.password = form[0].value.trim();
+    }
+    if (form[1].value.trim()) {
+      user.firstName = form[1].value.trim();
+    }
+    if (form[2].value.trim()) {
+      user.lastName = form[2].value.trim();
+    }
+    if (
+      form[0].value.trim() ||
+      form[1].value.trim() ||
+      form[2].value.trim() ||
+      form[3].files.length
+    ) {
+      try{
+        if (form[3].files.length) {
+          console.log(form[3].files);
+          const data = await ImageUpload(form[3]);
+          user.photo = data.key;
+        }
+        await axios.put(configData.SERVER_URL + "/updateUser.app", user);
+        sessionStorage.setItem('user',JSON.stringify(user));
+        setUser(user);
+        alert('User Updated!');
+      }catch(error){
+        alert('UPDATE FAILED!');
       }
-      if(form[1].value.trim()){
-          setFname(form[1].value.trim());
-          user.firstName = form[1].value.trim();
-      }
-      if(form[2].value.trim()){
-          setLname(form[2].value.trim());
-          user.lastName = form[2].value.trim();
-      }
-      setChanged(!changed);
 
-      await axios.put("http://3.129.45.151:8081/Project2-1.0.0" + "/updateUser.app", user); 
-     }
-  
-
-
+    }
+  };
   return (
     <>
       <Button size="lg" className="blue" onClick={handleShow}>
@@ -74,31 +69,27 @@ export const EditProfile: React.FC = (props: any) => {
           <Modal.Title>Edit Your Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit= {submit}>
+          <Form onSubmit={submit}>
             <Form.Group controlId="formPassword">
               <Form.Label>Password: </Form.Label>
-              <Form.Control type="password" placeholder="Enter new password"/>
+              <Form.Control type="password" placeholder="Enter new password" />
             </Form.Group>
             <Form.Group controlId="formFirstName">
               <Form.Label>First Name: </Form.Label>
-              <Form.Control type="text" placeholder="Enter new first name"/>
+              <Form.Control type="text" placeholder="Enter new first name" />
             </Form.Group>
             <Form.Group controlId="formLastName">
               <Form.Label>Last Name: </Form.Label>
-              <Form.Control type="text" placeholder="Enter new last name"/>
+              <Form.Control type="text" placeholder="Enter new last name" />
             </Form.Group>
             <Form.Group controlId="formPhoto">
               <Form.Label>Profile Picture:</Form.Label>
-              <Image
-                        src= {photo}
-                        width="150"
-                        rounded
-                      />
-              <ImageUpload path="profileImages"></ImageUpload>
+              <Image src={configData.S3_URL + user.photo} width="150" />
+              <Form.File label="New photo:" />
             </Form.Group>
             <Button className="blue" type="submit">
-            Save
-          </Button>
+              Save
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>

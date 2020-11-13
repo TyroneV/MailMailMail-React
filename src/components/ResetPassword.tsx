@@ -30,6 +30,7 @@ export const ResetPassword: React.FC = () => {
               newUser
             );
             alert("New Password set!");
+            history.push("/");
           } catch (error) {
             alert("Failed to update!");
           }

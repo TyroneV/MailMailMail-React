@@ -55,7 +55,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
   let PostedImage;
   if(postState[0].photo)
   {
-    PostedImage = <Card.Img variant="top" src={"https://mailmailmail-images.s3.us-east-2.amazonaws.com/"+postState[0].photo} style={{maxHeight: "400px", width:"auto",display: "block", marginLeft: "auto",  marginRight: "auto"}} />
+    PostedImage = <Card.Img variant="top" src={configData.S3_URL+postState[0].photo} style={{maxHeight: "400px", width:"auto",display: "block", marginLeft: "auto",  marginRight: "auto"}} />
   }
   return (
     
@@ -63,7 +63,7 @@ export const Post: React.FC<IProps> = (props:IProps) => {
       <Card className="mt-5">
         <Card.Body>
           <Card.Title>
-            <Image src={"https://mailmailmail-images.s3.us-east-2.amazonaws.com/" + user.photo} height="50" width="50" roundedCircle/>
+            <Image src={configData.S3_URL + user.photo} height="50" width="50" roundedCircle/>
             <p className="m-2 d-inline">{user && user.firstName} {user && user.lastName}</p>
           </Card.Title>
           {PostedImage}
