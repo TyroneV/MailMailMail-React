@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the Post component 1`] = `
+<Fragment>
+  <Button
+    active={false}
+    className="blue"
+    disabled={false}
+    onClick={[Function]}
+    size="lg"
+    variant="primary"
+  >
+    Create New Account
+  </Button>
+  <Modal
+    animation={true}
+    aria-labelledby="contained-modal-title-vcenter"
+    autoFocus={true}
+    backdrop={true}
+    centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
+    onHide={[Function]}
+    restoreFocus={true}
+    show={false}
+    size="lg"
+  >
+    <ModalHeader
+      className="blue"
+      closeButton={true}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        Register
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      <Form
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <FormGroup
+          controlId="formEmail"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Email
+          </FormLabel>
+          <FormControl
+            placeholder="Enter Email"
+            required={true}
+            type="email"
+          />
+        </FormGroup>
+        <FormGroup
+          controlId="formPassword"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Password
+          </FormLabel>
+          <FormControl
+            placeholder="Enter Password"
+            required={true}
+            type="password"
+          />
+        </FormGroup>
+        <FormGroup
+          controlId="formConfirmPassword"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Confirm Password
+          </FormLabel>
+          <FormControl
+            placeholder="Confirm Password"
+            required={true}
+            type="password"
+          />
+        </FormGroup>
+        <FormGroup
+          controlId="formFirstName"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            First Name
+          </FormLabel>
+          <FormControl
+            placeholder="Enter First Name"
+            required={true}
+            type="text"
+          />
+        </FormGroup>
+        <FormGroup
+          controlId="formLastName"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Last Name
+          </FormLabel>
+          <FormControl
+            placeholder="Enter Last Name"
+            required={true}
+            type="text"
+          />
+        </FormGroup>
+        <Button
+          active={false}
+          className="blue"
+          disabled={false}
+          type="submit"
+          variant="primary"
+        >
+          Submit
+        </Button>
+      </Form>
+    </ModalBody>
+  </Modal>
+</Fragment>
+`;
