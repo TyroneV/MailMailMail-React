@@ -36,11 +36,9 @@ export const CreatePost: React.FC = () => {
         configData.SERVER_URL + "/postSave.app",
         newPost
       );
-      console.log(a.data);
       alert('Posted!');
       window.location.href="/";
     } catch (error) {
-      console.log(error);
       alert('Posting Failed!');
     }
   };

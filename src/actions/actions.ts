@@ -70,7 +70,6 @@ export const getFeed = (id: number) => async (dispatch: any) => {
             payload: feed
         })
     } catch (error) {
-        console.log(error.message)
         return error.message
     }
 }
