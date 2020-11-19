@@ -20,6 +20,7 @@ In Revature's Social Network everyone is friends with everyone else. Users can r
 ## Features
 * As a user
   * I can login.
+  * I can register.
   * I can write a post.
   * I can like a post.
   * I can search other users and view their profile.
@@ -27,6 +28,14 @@ In Revature's Social Network everyone is friends with everyone else. Users can r
   * I can ask for a password reset and the application will send me an email on how to reset my password.
 
 ## Getting Started
+* Download and install [git](https://git-scm.com/downloads).
+* Install node from [node.js](https://nodejs.org/).
+* Go to your terminal and git clone this repository using: git clone https://github.com/TyroneV/MailMailMail-React.git
+* The src/config.json file is where the base endpoints for the application are stored. Change the SERVER_URL if you are hosting the [MailMailMail-Java](https://github.com/JordanHunnicutt/MailMailMail-Java) on a server or change the LOCALHOST_URL to match the localhost you are running the back end on. 
+* The base url is referenced in src/actions/actions.ts, src/components/Login.tsx, and src/components/CreatePost.tsx. Change the url that is referenced to match the location your back end is hosted. 
+* Cd into MailMailMail-React in your terminal
+* Run npm start
+* In your browser, go to localhost:3000
 
 ## Usage
 1. Login Page:
