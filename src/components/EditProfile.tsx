@@ -1,45 +1,59 @@
 import React, { useState } from "react";
-import { Button, Form, Modal, Image} from "react-bootstrap";
+import { Button, Form, Modal, Image } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "../reducers";
+import configData from "../config.json";
+import ImageUpload from "../jsfunction/ImageUpload";
+import { UserState } from "../states/states";
+import { onLogin } from "../actions/actions";
 
 export const EditProfile: React.FC = (props: any) => {
+  const axios = require("axios");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
-
-//   const [password, setPassword] = useState(props.password);
-//   const [fname, setFname] = useState(props.fname);
-//   const [lname, setLname] = useState(props.lname);
-//   const [photo, setPhoto] = useState(props.photo);
-const [password, setPassword] = useState("wasspord");
-const [fname, setFname] = useState("Enoch");
-const [lname, setLname] = useState("Cho");
-const [photo, setPhoto] = useState("/images/defaultImage.svg");
-const [changed, setChanged] = useState(true);
-
-
-  const submit = (event:any) => {
-      setShow(false);
-      event.preventDefault();
-      const form = event.currentTarget;
-      if(form[0].value.trim()){
-          setPassword(form[0].value.trim());
-      }
-      if(form[1].value.trim()){
-          setFname(form[1].value.trim());
-      }
-      if(form[2].value.trim()){
-          setLname(form[2].value.trim());
-      }
-      if(form[3].value.trim()){
-          setPhoto(form[3].value);
-      }
-      setChanged(!changed);
-  }
+  const user = useSelector((state: RootStore) => state.login);
+  const dispatch = useDispatch();
   
+  const setUser = (u: UserState) => {
+    dispatch(onLogin(u));
+  };
+  const submit = async (event: any) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form[0].value.trim()) {
+      user.password = form[0].value.trim();
+    }
+    if (form[1].value.trim()) {
+      user.firstName = form[1].value.trim();
+    }
+    if (form[2].value.trim()) {
+      user.lastName = form[2].value.trim();
+    }
+    if (
+      form[0].value.trim() ||
+      form[1].value.trim() ||
+      form[2].value.trim() ||
+      form[3].files.length
+    ) {
+      try{
+        if (form[3].files.length) {
+          const data = await ImageUpload(form[3]);
+          user.photo = data.key;
+        }
+        await axios.put(configData.SERVER_URL + "/updateUser.app", user);
+        sessionStorage.setItem('user',JSON.stringify(user));
+        setUser(user);
+        handleClose();
+        alert('User Updated!');
+        window.location.href="/";
+      }catch(error){
+        alert('UPDATE FAILED!');
+      }
 
-
+    }
+  };
   return (
     <>
       <Button size="lg" className="blue" onClick={handleShow}>
@@ -57,31 +71,27 @@ const [changed, setChanged] = useState(true);
           <Modal.Title>Edit Your Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit= {submit}>
+          <Form onSubmit={submit}>
             <Form.Group controlId="formPassword">
-              <Form.Label>Password: {password}</Form.Label>
-              <Form.Control type="password" placeholder="Enter new password"/>
+              <Form.Label>Password: </Form.Label>
+              <Form.Control type="password" placeholder="Enter new password" />
             </Form.Group>
             <Form.Group controlId="formFirstName">
-              <Form.Label>First Name: {fname}</Form.Label>
-              <Form.Control type="text" placeholder="Enter new first name"/>
+              <Form.Label>First Name: </Form.Label>
+              <Form.Control type="text" placeholder="Enter new first name" />
             </Form.Group>
             <Form.Group controlId="formLastName">
-              <Form.Label>Last Name: {lname}</Form.Label>
-              <Form.Control type="text" placeholder="Enter new last name"/>
+              <Form.Label>Last Name: </Form.Label>
+              <Form.Control type="text" placeholder="Enter new last name" />
             </Form.Group>
             <Form.Group controlId="formPhoto">
               <Form.Label>Profile Picture:</Form.Label>
-              <Image
-                        src= {photo}
-                        width="150"
-                        rounded
-                      />
-              <Form.File id="newPic"/>
+              <Image src={configData.S3_URL + user.photo} width="150" />
+              <Form.File label="New photo:" />
             </Form.Group>
             <Button className="blue" type="submit">
-            Save
-          </Button>
+              Save
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>

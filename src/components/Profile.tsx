@@ -6,7 +6,7 @@ import { NavBar } from "./NavBar";
 import { Feed } from "./Feed";
 import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
-
+import configData from "../config.json";
 
 export const Profile: React.FC = () => {
   const user = useSelector((state: RootStore) => state.login);
@@ -15,6 +15,7 @@ export const Profile: React.FC = () => {
     <>
       <NavBar />
       <Container>
+        <p></p>
         <Row>
           <Col
             className="mt-5"
@@ -22,17 +23,17 @@ export const Profile: React.FC = () => {
           >
             <Card style={{ width: "60rem" }}>
               <Card.Body>
-                <Container className="margin-20">
+                <Container className="m-4">
                   <Row>
                     <Col sm={3}>
-                      <Image src="/images/defaultImage.svg" width="150" rounded />
+                      <Image src={configData.S3_URL +user.photo} height="150" width="150" roundedCircle/>
                     </Col>
                     <Col sm={9}>
                       <div>
                         <Card.Title>
                           {user.firstName} {user.lastName}
                         </Card.Title>
-      
+
                         <EditProfile />
                       </div>
                     </Col>
@@ -40,15 +41,8 @@ export const Profile: React.FC = () => {
                 </Container>
                 <Navbar className="blue" variant="dark">
                   <Navbar.Brand className="mr-auto" href="#home">
-                    Posts
+                    {user.firstName}'s Posts
                   </Navbar.Brand>
-                  <Navbar.Brand className="mr-auto" href="#home">
-                    Photos
-                  </Navbar.Brand>
-                  <Navbar.Brand className="mr-auto" href="#home">
-                    About
-                  </Navbar.Brand>
-                  <Navbar.Brand href="#home">Friends</Navbar.Brand>
                 </Navbar>
                 {/* Posts here */}
                 <Feed id={user.id}/>

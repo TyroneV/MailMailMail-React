@@ -7,13 +7,13 @@ import {
   Container,
   Form,
   Row,
+  Image
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootStore } from "../reducers";
-import { UserComment } from "./UserComment";
 import {PostInfo, UserInfo, LikeInfo} from '../states/states';
 import { Like } from "./Like";
-
+import configData from "../config.json";
 //Refers to the post-id
 interface IProps{
   id:number
@@ -35,9 +35,11 @@ export const Post: React.FC<IProps> = (props:IProps) => {
 
   const [user, setUser] = useState<UserInfo>(initialState);
 
-  
-  
-  
+  const postImage = () =>{
+    if(postState[0].photo){
+    return (<Card.Img variant="top" src={configData.S3_URL + postState[0].photo} />)
+    }
+  }
   useEffect(()=>{
     const findUser = () =>{
       let i:any;
@@ -50,16 +52,21 @@ export const Post: React.FC<IProps> = (props:IProps) => {
     }
    findUser();
   }, [postState,usersState])
-  
+  let PostedImage;
+  if(postState[0].photo)
+  {
+    PostedImage = <Card.Img variant="top" src={configData.S3_URL+postState[0].photo} style={{maxHeight: "400px", width:"auto",display: "block", marginLeft: "auto",  marginRight: "auto"}} />
+  }
   return (
+    
     <>
       <Card className="mt-5">
         <Card.Body>
           <Card.Title>
-            <img src={user.photo} width="50"/>
+            <Image src={configData.S3_URL + user.photo} height="50" width="50" roundedCircle/>
             <p className="m-2 d-inline">{user && user.firstName} {user && user.lastName}</p>
           </Card.Title>
-          <Card.Img variant="top" src={postState[0].photo} />
+          {PostedImage}
           <Card className="mb-4">
             <Container>
               <Row>
@@ -82,9 +89,6 @@ export const Post: React.FC<IProps> = (props:IProps) => {
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
                   {/* Comments here */}
-                  <UserComment />
-                  <UserComment />
-                  <UserComment />
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

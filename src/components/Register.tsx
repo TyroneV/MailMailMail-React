@@ -18,7 +18,7 @@ export const Register: React.FC = (props: any) => {
         password:form[1].value,
         firstName:form[3].value,
         lastName:form[4].value,
-        photo:'/images/defaultImage.svg'
+        photo:'profileImages/defaultImage.svg%2Bxml'
     }
     submitUserDb(user);
   }else{
@@ -29,7 +29,6 @@ export const Register: React.FC = (props: any) => {
   const submitUserDb = async (user:any) =>{
     try {
     const result = await axios.post(configData.SERVER_URL +'/createUser.app', user);
-    console.log(result.data);
       alert("SUCCESSFULLY CREATED USER!");
     }catch(error){
       alert("FAILED TO CREATE USER!");

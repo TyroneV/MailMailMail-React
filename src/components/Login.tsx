@@ -47,8 +47,8 @@ export const Login: React.FC = () => {
   };
 
   async function loginUser(userEmail: string, userPassword: string) {
-    const url =
-    configData.SERVER_URL +"/login.app?email=" +
+    const url =configData.SERVER_URL+
+      "/login.app?email=" +
       userEmail +
       "&password=" +
       userPassword;
@@ -69,11 +69,11 @@ export const Login: React.FC = () => {
     <>
       <Container className="fill border white width">
         <Row>
-          <Col
+          <Col 
             className="mt-5 overflow-hidden"
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <img src={"/images/longTitle.svg"} width="1000" />
+            <img src={"/images/longTitle.svg"} width="1000"/>
           </Col>
         </Row>
         <Row className="mt-5">
@@ -102,7 +102,7 @@ export const Login: React.FC = () => {
                 <Container>
                   <Row>
                     <Col
-                      className="margin-20"
+                      className="m-5"
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <ForgotPass/>

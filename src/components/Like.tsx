@@ -18,23 +18,20 @@ export const Like: React.FC<IProps> = (props: IProps) => {
     const [like, setlike] = useState<any>();
     const [chosen, setChosen] = useState(false);
     const [up, setUp] = useState(false);
-    const [num, setNum] = useState(0);
 
 
     useEffect(() => {
         if (chosen) {
             if (!up) {
+                
                 dispatch(deleteLike(like))
-                setNum(num-1);
+                setChosen(false);
             } else {
                 dispatch(makeLike(props.post));
-                setNum(num+1);
-            }
-            if(num <0) {
-                setNum(0);
+                setChosen(false);
             }
         }
-    }, [dispatch, props.post,chosen,up, like, num]);
+    }, [dispatch, props.post,chosen,up, like]);
 
 
     const handleLike = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
@@ -42,10 +39,13 @@ export const Like: React.FC<IProps> = (props: IProps) => {
             e.currentTarget.src = "/images/thumbsUP.svg";
             setUp(false)
             setChosen(true);
+           
+
         } else {
             e.currentTarget.src = "/images/thumbsUP_active.svg";
             setUp(true);
             setChosen(true);
+            
 
         }
     }
@@ -56,6 +56,7 @@ export const Like: React.FC<IProps> = (props: IProps) => {
             for (i in props.like) {
                 if (props.like[i].authorId === currUser.id) {
                     setlike(props.like[i]);
+                    
                     setUp(true);
                     return (<input
                         type="image"
@@ -92,11 +93,9 @@ export const Like: React.FC<IProps> = (props: IProps) => {
     }
 
     function likeCount () {
-        if(num !== props.like.length && !chosen){
-            setNum(props.like.length);
-        }
+       
         return(            
-            <h6 className="m-2 d-inline">{num}</h6>
+            <h6 className="m-2 d-inline">{props.like.length}</h6>
         )
     }
 

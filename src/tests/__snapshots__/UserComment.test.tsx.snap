@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the UserComment component 1`] = `
+<Fragment>
+  <Card
+    body={false}
+  >
+    <CardBody>
+      <Image
+        fluid={false}
+        height="50"
+        rounded={true}
+        roundedCircle={false}
+        src="/defaultImage.svg"
+        thumbnail={false}
+        width="50"
+      />
+      <h6
+        className="m-2 d-inline"
+      >
+        Author
+      </h6>
+       Nice post
+    </CardBody>
+  </Card>
+</Fragment>
+`;

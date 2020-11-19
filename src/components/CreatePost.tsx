@@ -11,6 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import configData from "../config.json";
 import { RootStore } from "../reducers";
+import postImage from "./postImage";
 
 const axios = require("axios");
 
@@ -20,24 +21,25 @@ export const CreatePost: React.FC = () => {
   const submitPost = async (event: any) => {
     event.preventDefault();
     const form = event.currentTarget;
-    console.log(form);
+    let newPic;
+    if(form[1].files[0]){
+    newPic = await postImage(form[1].files[0]);
+     }
     const newPost = {
       content: form[0].value,
-      photo: form[1].value,
+      photo: newPic,
       authorId: user.id,
       datecreated: null,
     };
-    if (!newPost.photo) {
-      newPost.photo = "https://www.mailpile.is/img/icon-512x512.png";
-    }
     try {
       const a = await axios.post(
         configData.SERVER_URL + "/postSave.app",
         newPost
       );
-      console.log(a.data);
+      alert('Posted!');
+      window.location.href="/";
     } catch (error) {
-      console.log(error);
+      alert('Posting Failed!');
     }
   };
 
@@ -50,9 +52,10 @@ export const CreatePost: React.FC = () => {
               <Col lg={2}>
                 <Image
                   className="mb-2 mr-2"
-                  src={user.photo}
+                  src={configData.S3_URL +user.photo}
+                  height="150"
                   width="150"
-                  rounded
+                  roundedCircle
                 />
               </Col>
               <Col>
