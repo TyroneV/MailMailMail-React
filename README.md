@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# MailMailMail
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In Revature's Social Network everyone is friends with everyone else. Users can register, login to the application, and start sharing multimedia with everyone. Registered users are allowed to modify their personal information and upload their profile pictures. The application provides a search feature that allows users to search out friends and look at their profiles. Users are provided with a "feed", in which they can see what everyone is posting and like posts. Users can access and use the application via an interactive client-side single paged application that stores and retrieves multimedia using AWS S3 and consumes a RESTful web service that provides business logic and access to a database.
 
-## Available Scripts
+### [Link to the Backend](https://github.com/JordanHunnicutt/MailMailMail-Java)
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+* PostgreSQL
+* Agile-Scrum
+* HTML
+* SCSS
+* JavaScript
+* Typescript
+* React
+* Redux
+* Agile-Scrum
+* Enzyme/Jest
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
+* As a user
+  * I can login.
+  * I can write a post.
+  * I can like a post.
+  * I can search other users and view their profile.
+  * I can edit my profile. change my name, password and profile picture.
+  * I can ask for a password reset and the application will send me an email on how to reset my password.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+## Usage
+1. Login Page:
+<img src="https://github.com/TyroneV/MailMailMail-React/blob/master/public/images/M3Login.png" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Feed:
+<img src="https://github.com/TyroneV/MailMailMail-React/blob/master/public/images/M3Home.png" />
 
-### `npm run build`
+3. Post Example:
+<img src="https://github.com/TyroneV/MailMailMail-React/blob/master/public/images/M3Post.png" />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Profile Page:
+<img src="https://github.com/TyroneV/MailMailMail-React/blob/master/public/images/M3Profile.png" />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. Edit Profile:
+<img src="https://github.com/TyroneV/MailMailMail-React/blob/master/public/images/M3EditProfile.png">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+6. Search Function:
+<img src="https://github.com/TyroneV/MailMailMail-React/blob/master/public/images/M3Search.png" />
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributors
+* Jordan Hunnicutt
+* Alex Orr
+* Enoch Cho
+* Robert Porto
+* Tyrone Veneracion
